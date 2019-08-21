@@ -1,0 +1,16 @@
+{
+  "deployCode":"25_kafka_consumer_deploy",
+  "jobKey":"stat_kafka_mysql.kafka_consumer_test",
+  "selectKey":"kafka.kafka_selector.2.test0,test1",
+  "nodeKey":"stat_kafka_mysql.kafka_consumer_test.kafka_selector",
+  "deployType":"normal",
+  "masterLabels":[
+    "songge-dev"
+  ],
+  "standbyLabels":[
+
+  ],
+  "operate":"modify",
+  "workerId":null,
+  "deploymentInfo":null
+}

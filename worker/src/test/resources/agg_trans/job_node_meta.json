@@ -1,0 +1,85 @@
+{
+  "jobMeta": {
+    "jobTemplate": {
+      "templateCode": "stat_mysql_mysql",
+      "templateName": "鏁版嵁缁熻(Mysql-Mysql)"
+    },
+    "jobInfo": {
+      "jobId": 1041,
+      "jobCode": "v_deal_load_deal_stat",
+      "jobKey": "stat_mysql_mysql.v_deal_load_deal_stat"
+    },
+    "jobNodes": null,
+    "extractNode": null,
+    "selectKey": "mysql.mysql_scan.20.v_deal_load_deal.1s.100"
+  },
+  "nodeMeta": {
+    "nodeCode": "agg_trans",
+    "nodeName": "鑱氬悎杞崲",
+    "nodeKey": "stat_mysql_mysql.v_deal_load_deal_stat.agg_trans",
+    "nodeStage": "transform",
+    "dataSourceType": "",
+    "executeMethod": "java",
+    "executeUri": "com.hframework.datacenter.hamster.worker.tasks.transform.AggregationTransformer",
+    "rows": [{
+      "bucketFields": "user_id",
+      "bucketTimeField": "create_time",
+      "bucketTimeInterval": "1s",
+      "metricFields": "money",
+      "metricFunction": "sum",
+      "targetColumn": "user_investing_principal"
+    }, {
+      "bucketFields": "user_id",
+      "bucketTimeField": "create_time",
+      "bucketTimeInterval": "1s",
+      "metricFields": "money",
+      "metricFunction": "sum",
+      "targetColumn": "user_year_invest_amount"
+    }, {
+      "bucketFields": "user_id",
+      "bucketTimeField": "create_time",
+      "bucketTimeInterval": "1s",
+      "metricFields": "${money * 100}",
+      "metricFunction": "sum",
+      "targetColumn": "user_investing_interest"
+    }, {
+      "bucketFields": "user_id",
+      "bucketTimeField": "create_time",
+      "bucketTimeInterval": "1s",
+      "metricFields": "id",
+      "metricFunction": "count",
+      "targetColumn": "user_invest_amount"
+    }],
+    "workerId": null
+  },
+  "prevNodeMeta": {
+    "jobTemplate": {
+      "templateCode": "stat_mysql_mysql",
+      "templateName": "鏁版嵁缁熻(Mysql-Mysql)"
+    },
+    "jobInfo": {
+      "jobId": 1041,
+      "jobCode": "v_deal_load_deal_stat",
+      "jobKey": "stat_mysql_mysql.v_deal_load_deal_stat"
+    },
+    "nodeMeta": {
+      "nodeCode": "mysql_scan",
+      "nodeName": "Mysql鎵弿",
+      "nodeKey": "stat_mysql_mysql.v_deal_load_deal_stat.mysql_scan",
+      "nodeStage": "extract",
+      "dataSourceType": "mysql",
+      "executeMethod": "java",
+      "executeUri": "com.hframework.datacenter.hamster.worker.tasks.extract.MysqlScanExtractor;com.hframework.datacenter.hamster.worker.tasks.select.MysqlScanSelector;com.hframework.datacenter.hamster.worker.tasks.term.MysqlBinlogTerminator",
+      "rows": [{
+        "batchSize": "100",
+        "scanInterval": "1s",
+        "sourceDB": "20",
+        "sourceColumns": "",
+        "filterExpression": "",
+        "operType": "1",
+        "sourceTable": "v_deal_load_deal"
+      }],
+      "workerId": null
+    }
+  }
+}

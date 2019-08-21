@@ -1,0 +1,64 @@
+{
+  "message": {
+    "batchId": 0,
+    "createTime": 1539763401738,
+    "binlogStart": "mysql-bin.000015|6832352",
+    "binlogEnd": "mysql-bin.000015|6832352",
+    "datas": [{
+      "tableId": -1,
+      "tableName": "firstb2b_user_log_27",
+      "schemaName": "firstb2b_test",
+      "fields": [{
+        "index": 0,
+        "columnType": 12,
+        "columnName": "log_time",
+        "function": null,
+        "null": false,
+        "key": true
+      }, {
+        "index": 1,
+        "columnType": 4,
+        "columnName": "log_user_id",
+        "function": null,
+        "null": false,
+        "key": true
+      }, {
+        "index": 2,
+        "columnType": -5,
+        "columnName": "operate_times",
+        "function": "count",
+        "null": false,
+        "key": false
+      }, {
+        "index": 3,
+        "columnType": 3,
+        "columnName": "money_sum",
+        "function": "sum",
+        "null": false,
+        "key": false
+      }, {
+        "index": 4,
+        "columnType": 3,
+        "columnName": "score_sum",
+        "function": "sum",
+        "null": false,
+        "key": false
+      }],
+      "rows": [{
+        "values": ["20140724115352", "6364", "1", "-200.0", "1.0"],
+        "oldValues": [],
+        "updates": [],
+        "eventType": "UPDATE",
+        "executeTime": 1539763273000,
+        "binLogPosition": "mysql-bin.000015|6832355"
+      }, {
+        "values": ["20140724115352", "6363", "1", "-100.0", "98.0"],
+        "oldValues": [],
+        "updates": [],
+        "eventType": "UPDATE",
+        "executeTime": 1539763273000,
+        "binLogPosition": "mysql-bin.000015|6832355"
+      }]
+    }]
+  }
+}

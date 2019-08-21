@@ -1,0 +1,16 @@
+{
+  "deployCode":"22_exp_transform_deploy",
+  "jobKey":"exp_mysql_mysql.exp_transform_test",
+  "selectKey":"mysql.mysql_scan.20.dwd_act_payment.3s.100.",
+  "nodeKey":"exp_mysql_mysql.exp_transform_test.exp_trans",
+  "deployType":"normal",
+  "masterLabels":[
+    "songge-dev"
+  ],
+  "standbyLabels":[
+
+  ],
+  "operate":"modify",
+  "workerId":null,
+  "deploymentInfo":null
+}

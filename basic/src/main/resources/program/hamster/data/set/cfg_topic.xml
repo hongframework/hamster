@@ -1,0 +1,51 @@
+<dataset>
+  <module>cfg</module>
+  <code>cfg_topic</code>
+  <entity>cfg_topic</entity>
+  <name>主题【默认】</name>
+  <fields>
+    <field code="cfg_topic_id" name="主题id" edit-type="hidden" is-key="true">
+      <create-edit-type>hidden</create-edit-type>
+      <update-edit-type>text</update-edit-type>
+    </field>
+    <!--<field code="cfg_topic_type" name="主题类型" edit-type="select">-->
+      <!--<enum-class code="cfg_topic.cfg_topic_type"/>-->
+    <!--</field>-->
+    <!--<field code="cfg_topic_name" name="主题名称" edit-type="input" not-null="true">-->
+      <!--<tipinfo>记录标识，经用于主题的展示与识别</tipinfo>-->
+    <!--</field>-->
+    <field code="cfg_topic_code" name="主题编码" edit-type="input" not-null="true">
+      <tipinfo>队列消费者消费主题名称，一般为字母组合，如：loginInfo</tipinfo>
+    </field>
+
+    <!--<field code="serial_no" name="消息序列生成规则" edit-type="input"/>-->
+
+    <field code="partitions" name="分区数" edit-type="input" not-null="true"/>
+    <field code="replicas" name="副本数" edit-type="input" not-null="true"/>
+    <field code="cfg_topic_desc" name="备注" edit-type="input"/>
+    <field code="status" name="状态" edit-type="select"  not-null="true">
+      <enum-class code="cfg_topic.status"/>
+    </field>
+    <field code="cfg_broker_id" name="消息队列id" edit-type="hidden">
+      <rel entity-code="cfg_broker/cfg_broker_id/cfg_broker_name"/>
+    </field>
+    <field code="creator_id" name="创建人" edit-type="text">
+      <rel entity-code="hfsec_user/hfsec_user_id/hfsec_user_name"/>
+      <create-edit-type>hidden</create-edit-type>
+      <update-edit-type>text</update-edit-type>
+    </field>
+    <field code="create_time" name="创建时间" edit-type="hidden">
+      <create-edit-type>hidden</create-edit-type>
+      <update-edit-type>text</update-edit-type>
+    </field>
+    <field code="modifier_id" name="修改人" edit-type="hidden">
+      <rel entity-code="hfsec_user/hfsec_user_id/hfsec_user_name"/>
+      <create-edit-type>hidden</create-edit-type>
+      <update-edit-type>hidden</update-edit-type>
+    </field>
+    <field code="modify_time" name="修改时间" edit-type="hidden">
+      <create-edit-type>hidden</create-edit-type>
+      <update-edit-type>hidden</update-edit-type>
+    </field>
+  </fields>
+</dataset>

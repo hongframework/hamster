@@ -1,0 +1,75 @@
+{
+  "jobMeta": {
+    "jobTemplate": {
+      "templateCode": "stat_binlog_mysql",
+      "templateName": "鏁版嵁缁熻(Binlog-Mysql)"
+    },
+    "jobInfo": {
+      "jobId": 1037,
+      "jobCode": "user_agg_second",
+      "jobKey": "stat_binlog_mysql.user_agg_second"
+    },
+    "jobNodes": null,
+    "extractNode": null,
+    "selectKey": "binlog.mysql_binlog.13"
+  },
+  "nodeMeta": {
+    "nodeCode": "mysql_write",
+    "nodeName": "Mysql瀛樺偍",
+    "nodeKey": "stat_binlog_mysql.user_agg_second.mysql_write",
+    "nodeStage": "load",
+    "dataSourceType": "mysql",
+    "executeMethod": "java",
+    "executeUri": "com.hframework.datacenter.hamster.worker.tasks.load.MysqlWriteLoader",
+    "rows": [{
+      "targetDB": "20",
+      "targetTable": "user_stat_second_${yyyy}",
+      "updateMethod": "i_or_u",
+      "keyField": "log_user_id,log_time"
+    }],
+    "workerId": null
+  },
+  "prevNodeMeta": {
+    "jobTemplate": {
+      "templateCode": "stat_binlog_mysql",
+      "templateName": "鏁版嵁缁熻(Binlog-Mysql)"
+    },
+    "jobInfo": {
+      "jobId": 1037,
+      "jobCode": "user_agg_second",
+      "jobKey": "stat_binlog_mysql.user_agg_second"
+    },
+    "nodeMeta": {
+      "nodeCode": "agg_trans",
+      "nodeName": "鑱氬悎杞崲",
+      "nodeKey": "stat_binlog_mysql.user_agg_second.agg_trans",
+      "nodeStage": "transform",
+      "dataSourceType": "",
+      "executeMethod": "java",
+      "executeUri": "com.hframework.datacenter.hamster.worker.tasks.transform.AggregationTransformer",
+      "rows": [{
+        "bucketFields": "log_user_id",
+        "bucketTimeField": "log_time",
+        "bucketTimeInterval": "1s",
+        "metricFields": "score",
+        "metricFunction": "sum",
+        "targetColumn": "score_sum"
+      }, {
+        "bucketFields": "log_user_id",
+        "bucketTimeField": "log_time",
+        "bucketTimeInterval": "1s",
+        "metricFields": "money",
+        "metricFunction": "sum",
+        "targetColumn": "money_sum"
+      }, {
+        "bucketFields": "log_user_id",
+        "bucketTimeField": "log_time",
+        "bucketTimeInterval": "1s",
+        "metricFields": "id",
+        "metricFunction": "count",
+        "targetColumn": "operate_times"
+      }],
+      "workerId": null
+    }
+  }
+}

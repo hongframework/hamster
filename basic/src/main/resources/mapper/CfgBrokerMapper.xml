@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hframework.hamster.cfg.dao.CfgBrokerMapper" >
+  <resultMap id="BaseResultMap" type="com.hframework.hamster.cfg.domain.model.CfgBroker" >
+    <constructor >
+      <idArg column="cfg_broker_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="cfg_broker_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="cfg_broker_code" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="cfg_broker_type" jdbcType="TINYINT" javaType="java.lang.Byte" />
+      <arg column="addr_list" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="status" jdbcType="TINYINT" javaType="java.lang.Byte" />
+      <arg column="creator_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="modifier_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="modify_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="zk_addr_list" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    cfg_broker_id, cfg_broker_name, cfg_broker_code, cfg_broker_type, addr_list, `status`, 
+    creator_id, create_time, modifier_id, modify_time, zk_addr_list
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hframework.hamster.cfg.domain.model.CfgBroker_Example" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from `cfg_broker`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitEnd != null and limitEnd != 0" >
+      limit #{limitStart} , #{limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from `cfg_broker`
+    where cfg_broker_id = #{cfgBrokerId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from `cfg_broker`
+    where cfg_broker_id = #{cfgBrokerId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hframework.hamster.cfg.domain.model.CfgBroker_Example" >
+    delete from `cfg_broker`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hframework.hamster.cfg.domain.model.CfgBroker" >
+    <selectKey resultType="java.lang.Long" keyProperty="cfgBrokerId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `cfg_broker` (cfg_broker_name, cfg_broker_code, cfg_broker_type, 
+      addr_list, `status`, creator_id, 
+      create_time, modifier_id, modify_time, 
+      zk_addr_list)
+    values (#{cfgBrokerName,jdbcType=VARCHAR}, #{cfgBrokerCode,jdbcType=VARCHAR}, #{cfgBrokerType,jdbcType=TINYINT}, 
+      #{addrList,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, #{creatorId,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifierId,jdbcType=BIGINT}, #{modifyTime,jdbcType=TIMESTAMP}, 
+      #{zkAddrList,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hframework.hamster.cfg.domain.model.CfgBroker" >
+    <selectKey resultType="java.lang.Long" keyProperty="cfgBrokerId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `cfg_broker`
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cfgBrokerName != null" >
+        cfg_broker_name,
+      </if>
+      <if test="cfgBrokerCode != null" >
+        cfg_broker_code,
+      </if>
+      <if test="cfgBrokerType != null" >
+        cfg_broker_type,
+      </if>
+      <if test="addrList != null" >
+        addr_list,
+      </if>
+      <if test="status != null" >
+        `status`,
+      </if>
+      <if test="creatorId != null" >
+        creator_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="modifierId != null" >
+        modifier_id,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+      <if test="zkAddrList != null" >
+        zk_addr_list,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cfgBrokerName != null" >
+        #{cfgBrokerName,jdbcType=VARCHAR},
+      </if>
+      <if test="cfgBrokerCode != null" >
+        #{cfgBrokerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cfgBrokerType != null" >
+        #{cfgBrokerType,jdbcType=TINYINT},
+      </if>
+      <if test="addrList != null" >
+        #{addrList,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="creatorId != null" >
+        #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifierId != null" >
+        #{modifierId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zkAddrList != null" >
+        #{zkAddrList,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hframework.hamster.cfg.domain.model.CfgBroker_Example" resultType="java.lang.Integer" >
+    select count(*) from `cfg_broker`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update `cfg_broker`
+    <set >
+      <if test="record.cfgBrokerId != null" >
+        cfg_broker_id = #{record.cfgBrokerId,jdbcType=BIGINT},
+      </if>
+      <if test="record.cfgBrokerName != null" >
+        cfg_broker_name = #{record.cfgBrokerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cfgBrokerCode != null" >
+        cfg_broker_code = #{record.cfgBrokerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cfgBrokerType != null" >
+        cfg_broker_type = #{record.cfgBrokerType,jdbcType=TINYINT},
+      </if>
+      <if test="record.addrList != null" >
+        addr_list = #{record.addrList,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        `status` = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.creatorId != null" >
+        creator_id = #{record.creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifierId != null" >
+        modifier_id = #{record.modifierId,jdbcType=BIGINT},
+      </if>
+      <if test="record.modifyTime != null" >
+        modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.zkAddrList != null" >
+        zk_addr_list = #{record.zkAddrList,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update `cfg_broker`
+    set cfg_broker_id = #{record.cfgBrokerId,jdbcType=BIGINT},
+      cfg_broker_name = #{record.cfgBrokerName,jdbcType=VARCHAR},
+      cfg_broker_code = #{record.cfgBrokerCode,jdbcType=VARCHAR},
+      cfg_broker_type = #{record.cfgBrokerType,jdbcType=TINYINT},
+      addr_list = #{record.addrList,jdbcType=VARCHAR},
+      `status` = #{record.status,jdbcType=TINYINT},
+      creator_id = #{record.creatorId,jdbcType=BIGINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      modifier_id = #{record.modifierId,jdbcType=BIGINT},
+      modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
+      zk_addr_list = #{record.zkAddrList,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hframework.hamster.cfg.domain.model.CfgBroker" >
+    update `cfg_broker`
+    <set >
+      <if test="cfgBrokerName != null" >
+        cfg_broker_name = #{cfgBrokerName,jdbcType=VARCHAR},
+      </if>
+      <if test="cfgBrokerCode != null" >
+        cfg_broker_code = #{cfgBrokerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cfgBrokerType != null" >
+        cfg_broker_type = #{cfgBrokerType,jdbcType=TINYINT},
+      </if>
+      <if test="addrList != null" >
+        addr_list = #{addrList,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        `status` = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="creatorId != null" >
+        creator_id = #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifierId != null" >
+        modifier_id = #{modifierId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zkAddrList != null" >
+        zk_addr_list = #{zkAddrList,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cfg_broker_id = #{cfgBrokerId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hframework.hamster.cfg.domain.model.CfgBroker" >
+    update `cfg_broker`
+    set cfg_broker_name = #{cfgBrokerName,jdbcType=VARCHAR},
+      cfg_broker_code = #{cfgBrokerCode,jdbcType=VARCHAR},
+      cfg_broker_type = #{cfgBrokerType,jdbcType=TINYINT},
+      addr_list = #{addrList,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=TINYINT},
+      creator_id = #{creatorId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modifier_id = #{modifierId,jdbcType=BIGINT},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      zk_addr_list = #{zkAddrList,jdbcType=VARCHAR}
+    where cfg_broker_id = #{cfgBrokerId,jdbcType=BIGINT}
+  </update>
+</mapper>

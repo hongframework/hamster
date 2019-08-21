@@ -1,0 +1,11 @@
+{
+  "deployCode": "11_test_stat",
+  "jobKey": "stat_binlog_mysql.user_agg_second",
+  "selectKey": "binlog.mysql_binlog.13",
+  "nodeKey": "stat_binlog_mysql.user_agg_second.mysql_write",
+  "masterLabels": ["zqh-dev"],
+  "standbyLabels": [],
+  "operate": "modify",
+  "workerId": "-999",
+  "deploymentInfo": null
+}

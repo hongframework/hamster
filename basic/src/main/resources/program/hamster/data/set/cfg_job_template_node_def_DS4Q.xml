@@ -1,0 +1,30 @@
+<dataset>
+  <module>cfg</module>
+  <code>cfg_job_template_node_def_DS4Q</code>
+  <entity>cfg_job_template_node_def</entity>
+  <name>任务模板节点定义【查询】</name>
+  <fields>
+    <field code="id" name="任务模板节点定义id" edit-type="hidden" is-key="true" not-null="true"/>
+    <field code="status" name="状态" edit-type="select">
+      <enum-class code="cfg_job_template_node_def.status"/>
+    </field>
+    <field code="job_template_id" name="任务模板定义id" edit-type="hidden" not-null="true">
+      <rel entity-code="cfg_job_template_def/id/name"/>
+    </field>
+    <field code="creator_id" name="创建人" edit-type="hidden">
+      <rel entity-code="hfsec_user/hfsec_user_id/hfsec_user_name" add-by-global="true"/>
+    </field>
+    <field code="mutix" name="是否多个" edit-type="select" not-null="true">
+      <enum-class code="cfg_job_template_node_def.mutix"/>
+    </field>
+    <field code="node_id" name="动态节点定义id" edit-type="select" not-null="true">
+      <rel entity-code="cfg_node_def/id/name"/>
+    </field>
+    <field code="create_time" name="创建时间" edit-type="hidden"/>
+    <field code="modifier_id" name="修改人" edit-type="hidden">
+      <rel entity-code="hfsec_user/hfsec_user_id/hfsec_user_name" add-by-global="true"/>
+    </field>
+    <field code="modify_time" name="修改时间" edit-type="hidden"/>
+    <field code="execute_order" name="调度顺序" edit-type="input"/>
+  </fields>
+</dataset>

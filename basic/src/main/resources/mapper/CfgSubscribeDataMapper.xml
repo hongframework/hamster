@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hframework.hamster.cfg.dao.CfgSubscribeDataMapper" >
+  <resultMap id="BaseResultMap" type="com.hframework.hamster.cfg.domain.model.CfgSubscribeData" >
+    <constructor >
+      <idArg column="cfg_subscribe_data_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="cfg_subscribe_data_type" jdbcType="TINYINT" javaType="java.lang.Byte" />
+      <arg column="cfg_subscribe_data_code" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="status" jdbcType="TINYINT" javaType="java.lang.Byte" />
+      <arg column="creator_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="modifier_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="modify_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="contain_change_before_value" jdbcType="TINYINT" javaType="java.lang.Byte" />
+      <arg column="cfg_subscribe_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    cfg_subscribe_data_id, cfg_subscribe_data_type, cfg_subscribe_data_code, `status`, 
+    creator_id, create_time, modifier_id, modify_time, contain_change_before_value, cfg_subscribe_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hframework.hamster.cfg.domain.model.CfgSubscribeData_Example" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from `cfg_subscribe_data`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitEnd != null and limitEnd != 0" >
+      limit #{limitStart} , #{limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from `cfg_subscribe_data`
+    where cfg_subscribe_data_id = #{cfgSubscribeDataId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from `cfg_subscribe_data`
+    where cfg_subscribe_data_id = #{cfgSubscribeDataId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hframework.hamster.cfg.domain.model.CfgSubscribeData_Example" >
+    delete from `cfg_subscribe_data`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hframework.hamster.cfg.domain.model.CfgSubscribeData" >
+    <selectKey resultType="java.lang.Long" keyProperty="cfgSubscribeDataId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `cfg_subscribe_data` (cfg_subscribe_data_type, cfg_subscribe_data_code, 
+      `status`, creator_id, create_time, 
+      modifier_id, modify_time, contain_change_before_value, 
+      cfg_subscribe_id)
+    values (#{cfgSubscribeDataType,jdbcType=TINYINT}, #{cfgSubscribeDataCode,jdbcType=VARCHAR}, 
+      #{status,jdbcType=TINYINT}, #{creatorId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifierId,jdbcType=BIGINT}, #{modifyTime,jdbcType=TIMESTAMP}, #{containChangeBeforeValue,jdbcType=TINYINT}, 
+      #{cfgSubscribeId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hframework.hamster.cfg.domain.model.CfgSubscribeData" >
+    <selectKey resultType="java.lang.Long" keyProperty="cfgSubscribeDataId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `cfg_subscribe_data`
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cfgSubscribeDataType != null" >
+        cfg_subscribe_data_type,
+      </if>
+      <if test="cfgSubscribeDataCode != null" >
+        cfg_subscribe_data_code,
+      </if>
+      <if test="status != null" >
+        `status`,
+      </if>
+      <if test="creatorId != null" >
+        creator_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="modifierId != null" >
+        modifier_id,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+      <if test="containChangeBeforeValue != null" >
+        contain_change_before_value,
+      </if>
+      <if test="cfgSubscribeId != null" >
+        cfg_subscribe_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cfgSubscribeDataType != null" >
+        #{cfgSubscribeDataType,jdbcType=TINYINT},
+      </if>
+      <if test="cfgSubscribeDataCode != null" >
+        #{cfgSubscribeDataCode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="creatorId != null" >
+        #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifierId != null" >
+        #{modifierId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="containChangeBeforeValue != null" >
+        #{containChangeBeforeValue,jdbcType=TINYINT},
+      </if>
+      <if test="cfgSubscribeId != null" >
+        #{cfgSubscribeId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hframework.hamster.cfg.domain.model.CfgSubscribeData_Example" resultType="java.lang.Integer" >
+    select count(*) from `cfg_subscribe_data`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update `cfg_subscribe_data`
+    <set >
+      <if test="record.cfgSubscribeDataId != null" >
+        cfg_subscribe_data_id = #{record.cfgSubscribeDataId,jdbcType=BIGINT},
+      </if>
+      <if test="record.cfgSubscribeDataType != null" >
+        cfg_subscribe_data_type = #{record.cfgSubscribeDataType,jdbcType=TINYINT},
+      </if>
+      <if test="record.cfgSubscribeDataCode != null" >
+        cfg_subscribe_data_code = #{record.cfgSubscribeDataCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        `status` = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.creatorId != null" >
+        creator_id = #{record.creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifierId != null" >
+        modifier_id = #{record.modifierId,jdbcType=BIGINT},
+      </if>
+      <if test="record.modifyTime != null" >
+        modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.containChangeBeforeValue != null" >
+        contain_change_before_value = #{record.containChangeBeforeValue,jdbcType=TINYINT},
+      </if>
+      <if test="record.cfgSubscribeId != null" >
+        cfg_subscribe_id = #{record.cfgSubscribeId,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update `cfg_subscribe_data`
+    set cfg_subscribe_data_id = #{record.cfgSubscribeDataId,jdbcType=BIGINT},
+      cfg_subscribe_data_type = #{record.cfgSubscribeDataType,jdbcType=TINYINT},
+      cfg_subscribe_data_code = #{record.cfgSubscribeDataCode,jdbcType=VARCHAR},
+      `status` = #{record.status,jdbcType=TINYINT},
+      creator_id = #{record.creatorId,jdbcType=BIGINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      modifier_id = #{record.modifierId,jdbcType=BIGINT},
+      modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
+      contain_change_before_value = #{record.containChangeBeforeValue,jdbcType=TINYINT},
+      cfg_subscribe_id = #{record.cfgSubscribeId,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hframework.hamster.cfg.domain.model.CfgSubscribeData" >
+    update `cfg_subscribe_data`
+    <set >
+      <if test="cfgSubscribeDataType != null" >
+        cfg_subscribe_data_type = #{cfgSubscribeDataType,jdbcType=TINYINT},
+      </if>
+      <if test="cfgSubscribeDataCode != null" >
+        cfg_subscribe_data_code = #{cfgSubscribeDataCode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        `status` = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="creatorId != null" >
+        creator_id = #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifierId != null" >
+        modifier_id = #{modifierId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="containChangeBeforeValue != null" >
+        contain_change_before_value = #{containChangeBeforeValue,jdbcType=TINYINT},
+      </if>
+      <if test="cfgSubscribeId != null" >
+        cfg_subscribe_id = #{cfgSubscribeId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where cfg_subscribe_data_id = #{cfgSubscribeDataId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hframework.hamster.cfg.domain.model.CfgSubscribeData" >
+    update `cfg_subscribe_data`
+    set cfg_subscribe_data_type = #{cfgSubscribeDataType,jdbcType=TINYINT},
+      cfg_subscribe_data_code = #{cfgSubscribeDataCode,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=TINYINT},
+      creator_id = #{creatorId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modifier_id = #{modifierId,jdbcType=BIGINT},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      contain_change_before_value = #{containChangeBeforeValue,jdbcType=TINYINT},
+      cfg_subscribe_id = #{cfgSubscribeId,jdbcType=BIGINT}
+    where cfg_subscribe_data_id = #{cfgSubscribeDataId,jdbcType=BIGINT}
+  </update>
+</mapper>

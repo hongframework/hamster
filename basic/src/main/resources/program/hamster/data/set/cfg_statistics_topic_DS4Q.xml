@@ -1,0 +1,25 @@
+<dataset>
+  <module>cfg</module>
+  <code>cfg_statistics_topic_DS4Q</code>
+  <entity>cfg_statistics_topic</entity>
+  <name>统计主题【查询】</name>
+  <fields>
+    <field code="cfg_statistics_topic_id" name="统计主题id" edit-type="hidden" is-key="true" not-null="true"/>
+    <field code="cfg_statistics_topic_code" name="统计主题编码" edit-type="input" not-null="true"/>
+    <field code="cfg_statistics_topic_name" name="统计主题名称" edit-type="input" is-name="true" not-null="true"/>
+    <field code="cfg_statistics_topic_desc" name="统计主题描述" edit-type="input"/>
+    <field code="status" name="状态" edit-type="select">
+      <enum-class code="cfg_statistics_topic.status"/>
+    </field>
+    <field code="creator_id" name="创建人" edit-type="hidden">
+      <rel entity-code="hfsec_user/hfsec_user_id/hfsec_user_name" add-by-global="true"/>
+    </field>
+    <field code="create_time_GEQ" name="创建开始时间" edit-type="hidden"/>
+    <field code="create_time_LEQ" name="创建结束时间" edit-type="hidden"/>
+    <field code="modifier_id" name="修改人" edit-type="hidden">
+      <rel entity-code="hfsec_user/hfsec_user_id/hfsec_user_name" add-by-global="true"/>
+    </field>
+    <field code="modify_time_GEQ" name="修改开始时间" edit-type="hidden"/>
+    <field code="modify_time_LEQ" name="修改结束时间" edit-type="hidden"/>
+  </fields>
+</dataset>

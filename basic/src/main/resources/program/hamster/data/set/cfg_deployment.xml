@@ -1,0 +1,55 @@
+<dataset>
+  <module>cfg</module>
+  <code>cfg_deployment</code>
+  <entity>cfg_deployment</entity>
+  <name>发布【默认】</name>
+  <fields>
+    <field code="id" name="发布id" edit-type="hidden" is-key="true" not-null="true"/>
+    <field code="code" name="发布编码" edit-type="input" not-null="true"/>
+    <field code="name" name="发布名称" edit-type="input" not-null="true" is-name="true"/>
+    <field code="type" name="发布类型" edit-type="select">
+      <enum-class code="cfg_subscribe.type"/>
+    </field>
+    <field code="datasource_id" name="数据源id" edit-type="select" not-null="true">
+      <rel entity-code="cfg_datasource/cfg_datasource_id/db"/>
+    </field>
+    <field code="log_begin_position" name="日志开始位置" edit-type="input" show-type="hidden"/>
+    <field code="log_begin_timestamp" name="日志开始时间" edit-type="datetime" />
+    <!--<field code="log_end_position" name="日志结束位置" edit-type="input" show-type="hidden"/>-->
+    <field code="log_end_position" name="日志结束位置" edit-type="hidden" show-type="hidden"/>
+    <!--<field code="log_end_timestamp" name="日志结束位置" edit-type="datetime" show-type="hidden"/>-->
+    <field code="log_end_timestamp" name="日志结束时间" edit-type="hidden" show-type="hidden"/>
+    <field code="deploy_json" name="过滤JSON" edit-type="textarea"  show-type="hidden"/>
+    <field code="labels" name="主标签" edit-type="muti-select" not-null="true">
+      <rel entity-code="cfg_label/id/code"/>
+    </field>
+    <field code="second_labels" name="次标签" edit-type="muti-select">
+      <rel entity-code="cfg_label/id/code"/>
+    </field>
+    <field code="alarm_strategy" name="报警策略" edit-type="muti-select"  show-type="hidden" width = "2">
+      <enum-class code="cfg_deployment.alarm_strategy"/>
+    </field>
+    <field code="status" name="状态" edit-type="select">
+      <enum-class code="cfg_subscribe.status"/>
+    </field>
+    <field code="creator_id" name="创建人" edit-type="hidden">
+      <rel entity-code="hfsec_user/hfsec_user_id/hfsec_user_name" add-by-global="true"/>
+      <create-edit-type>hidden</create-edit-type>
+      <update-edit-type>text</update-edit-type>
+    </field>
+
+    <field code="create_time" name="创建时间" edit-type="hidden">
+      <create-edit-type>hidden</create-edit-type>
+      <update-edit-type>text</update-edit-type>
+    </field>
+    <field code="modifier_id" name="修改人" edit-type="hidden">
+      <rel entity-code="hfsec_user/hfsec_user_id/hfsec_user_name" add-by-global="true"/>
+      <create-edit-type>hidden</create-edit-type>
+      <update-edit-type>hidden</update-edit-type>
+    </field>
+    <field code="modify_time" name="修改时间" edit-type="hidden">
+      <create-edit-type>hidden</create-edit-type>
+      <update-edit-type>hidden</update-edit-type>
+    </field>
+  </fields>
+</dataset>

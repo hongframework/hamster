@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hframework.hamster.cfg.dao.CfgSubscribeMapper" >
+  <resultMap id="BaseResultMap" type="com.hframework.hamster.cfg.domain.model.CfgSubscribe" >
+    <constructor >
+      <idArg column="cfg_subscribe_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="type" jdbcType="SMALLINT" javaType="java.lang.Short" />
+      <arg column="cfg_datasource_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="db_object_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="data_filter_expression" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="cfg_topic_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="partition_strategy" jdbcType="TINYINT" javaType="java.lang.Byte" />
+      <arg column="partition_key" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="log_begin_position" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="log_begin_timestamp" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="log_end_position" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="log_end_timestamp" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="log_current_position" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="cfg_subscribe_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="status" jdbcType="TINYINT" javaType="java.lang.Byte" />
+      <arg column="creator_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="modifier_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="modify_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="log_begin_file" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="log_end_file" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="cfg_broker_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="db_object_operate_type" jdbcType="TINYINT" javaType="java.lang.Byte" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    cfg_subscribe_id, `type`, cfg_datasource_id, db_object_name, data_filter_expression, 
+    cfg_topic_id, partition_strategy, partition_key, log_begin_position, log_begin_timestamp, 
+    log_end_position, log_end_timestamp, log_current_position, cfg_subscribe_name, `status`, 
+    creator_id, create_time, modifier_id, modify_time, log_begin_file, log_end_file, 
+    cfg_broker_id, db_object_operate_type
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hframework.hamster.cfg.domain.model.CfgSubscribe_Example" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from `cfg_subscribe`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitEnd != null and limitEnd != 0" >
+      limit #{limitStart} , #{limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from `cfg_subscribe`
+    where cfg_subscribe_id = #{cfgSubscribeId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from `cfg_subscribe`
+    where cfg_subscribe_id = #{cfgSubscribeId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hframework.hamster.cfg.domain.model.CfgSubscribe_Example" >
+    delete from `cfg_subscribe`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hframework.hamster.cfg.domain.model.CfgSubscribe" >
+    <selectKey resultType="java.lang.Long" keyProperty="cfgSubscribeId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `cfg_subscribe` (`type`, cfg_datasource_id, db_object_name, 
+      data_filter_expression, cfg_topic_id, partition_strategy, 
+      partition_key, log_begin_position, log_begin_timestamp, 
+      log_end_position, log_end_timestamp, log_current_position, 
+      cfg_subscribe_name, `status`, creator_id, 
+      create_time, modifier_id, modify_time, 
+      log_begin_file, log_end_file, cfg_broker_id, 
+      db_object_operate_type)
+    values (#{type,jdbcType=SMALLINT}, #{cfgDatasourceId,jdbcType=BIGINT}, #{dbObjectName,jdbcType=VARCHAR}, 
+      #{dataFilterExpression,jdbcType=VARCHAR}, #{cfgTopicId,jdbcType=BIGINT}, #{partitionStrategy,jdbcType=TINYINT}, 
+      #{partitionKey,jdbcType=VARCHAR}, #{logBeginPosition,jdbcType=BIGINT}, #{logBeginTimestamp,jdbcType=TIMESTAMP}, 
+      #{logEndPosition,jdbcType=BIGINT}, #{logEndTimestamp,jdbcType=TIMESTAMP}, #{logCurrentPosition,jdbcType=BIGINT}, 
+      #{cfgSubscribeName,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, #{creatorId,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifierId,jdbcType=BIGINT}, #{modifyTime,jdbcType=TIMESTAMP}, 
+      #{logBeginFile,jdbcType=VARCHAR}, #{logEndFile,jdbcType=VARCHAR}, #{cfgBrokerId,jdbcType=BIGINT}, 
+      #{dbObjectOperateType,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hframework.hamster.cfg.domain.model.CfgSubscribe" >
+    <selectKey resultType="java.lang.Long" keyProperty="cfgSubscribeId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `cfg_subscribe`
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="type != null" >
+        `type`,
+      </if>
+      <if test="cfgDatasourceId != null" >
+        cfg_datasource_id,
+      </if>
+      <if test="dbObjectName != null" >
+        db_object_name,
+      </if>
+      <if test="dataFilterExpression != null" >
+        data_filter_expression,
+      </if>
+      <if test="cfgTopicId != null" >
+        cfg_topic_id,
+      </if>
+      <if test="partitionStrategy != null" >
+        partition_strategy,
+      </if>
+      <if test="partitionKey != null" >
+        partition_key,
+      </if>
+      <if test="logBeginPosition != null" >
+        log_begin_position,
+      </if>
+      <if test="logBeginTimestamp != null" >
+        log_begin_timestamp,
+      </if>
+      <if test="logEndPosition != null" >
+        log_end_position,
+      </if>
+      <if test="logEndTimestamp != null" >
+        log_end_timestamp,
+      </if>
+      <if test="logCurrentPosition != null" >
+        log_current_position,
+      </if>
+      <if test="cfgSubscribeName != null" >
+        cfg_subscribe_name,
+      </if>
+      <if test="status != null" >
+        `status`,
+      </if>
+      <if test="creatorId != null" >
+        creator_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="modifierId != null" >
+        modifier_id,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+      <if test="logBeginFile != null" >
+        log_begin_file,
+      </if>
+      <if test="logEndFile != null" >
+        log_end_file,
+      </if>
+      <if test="cfgBrokerId != null" >
+        cfg_broker_id,
+      </if>
+      <if test="dbObjectOperateType != null" >
+        db_object_operate_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="type != null" >
+        #{type,jdbcType=SMALLINT},
+      </if>
+      <if test="cfgDatasourceId != null" >
+        #{cfgDatasourceId,jdbcType=BIGINT},
+      </if>
+      <if test="dbObjectName != null" >
+        #{dbObjectName,jdbcType=VARCHAR},
+      </if>
+      <if test="dataFilterExpression != null" >
+        #{dataFilterExpression,jdbcType=VARCHAR},
+      </if>
+      <if test="cfgTopicId != null" >
+        #{cfgTopicId,jdbcType=BIGINT},
+      </if>
+      <if test="partitionStrategy != null" >
+        #{partitionStrategy,jdbcType=TINYINT},
+      </if>
+      <if test="partitionKey != null" >
+        #{partitionKey,jdbcType=VARCHAR},
+      </if>
+      <if test="logBeginPosition != null" >
+        #{logBeginPosition,jdbcType=BIGINT},
+      </if>
+      <if test="logBeginTimestamp != null" >
+        #{logBeginTimestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logEndPosition != null" >
+        #{logEndPosition,jdbcType=BIGINT},
+      </if>
+      <if test="logEndTimestamp != null" >
+        #{logEndTimestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logCurrentPosition != null" >
+        #{logCurrentPosition,jdbcType=BIGINT},
+      </if>
+      <if test="cfgSubscribeName != null" >
+        #{cfgSubscribeName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="creatorId != null" >
+        #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifierId != null" >
+        #{modifierId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logBeginFile != null" >
+        #{logBeginFile,jdbcType=VARCHAR},
+      </if>
+      <if test="logEndFile != null" >
+        #{logEndFile,jdbcType=VARCHAR},
+      </if>
+      <if test="cfgBrokerId != null" >
+        #{cfgBrokerId,jdbcType=BIGINT},
+      </if>
+      <if test="dbObjectOperateType != null" >
+        #{dbObjectOperateType,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hframework.hamster.cfg.domain.model.CfgSubscribe_Example" resultType="java.lang.Integer" >
+    select count(*) from `cfg_subscribe`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update `cfg_subscribe`
+    <set >
+      <if test="record.cfgSubscribeId != null" >
+        cfg_subscribe_id = #{record.cfgSubscribeId,jdbcType=BIGINT},
+      </if>
+      <if test="record.type != null" >
+        `type` = #{record.type,jdbcType=SMALLINT},
+      </if>
+      <if test="record.cfgDatasourceId != null" >
+        cfg_datasource_id = #{record.cfgDatasourceId,jdbcType=BIGINT},
+      </if>
+      <if test="record.dbObjectName != null" >
+        db_object_name = #{record.dbObjectName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dataFilterExpression != null" >
+        data_filter_expression = #{record.dataFilterExpression,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cfgTopicId != null" >
+        cfg_topic_id = #{record.cfgTopicId,jdbcType=BIGINT},
+      </if>
+      <if test="record.partitionStrategy != null" >
+        partition_strategy = #{record.partitionStrategy,jdbcType=TINYINT},
+      </if>
+      <if test="record.partitionKey != null" >
+        partition_key = #{record.partitionKey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.logBeginPosition != null" >
+        log_begin_position = #{record.logBeginPosition,jdbcType=BIGINT},
+      </if>
+      <if test="record.logBeginTimestamp != null" >
+        log_begin_timestamp = #{record.logBeginTimestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.logEndPosition != null" >
+        log_end_position = #{record.logEndPosition,jdbcType=BIGINT},
+      </if>
+      <if test="record.logEndTimestamp != null" >
+        log_end_timestamp = #{record.logEndTimestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.logCurrentPosition != null" >
+        log_current_position = #{record.logCurrentPosition,jdbcType=BIGINT},
+      </if>
+      <if test="record.cfgSubscribeName != null" >
+        cfg_subscribe_name = #{record.cfgSubscribeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        `status` = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.creatorId != null" >
+        creator_id = #{record.creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifierId != null" >
+        modifier_id = #{record.modifierId,jdbcType=BIGINT},
+      </if>
+      <if test="record.modifyTime != null" >
+        modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.logBeginFile != null" >
+        log_begin_file = #{record.logBeginFile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.logEndFile != null" >
+        log_end_file = #{record.logEndFile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cfgBrokerId != null" >
+        cfg_broker_id = #{record.cfgBrokerId,jdbcType=BIGINT},
+      </if>
+      <if test="record.dbObjectOperateType != null" >
+        db_object_operate_type = #{record.dbObjectOperateType,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update `cfg_subscribe`
+    set cfg_subscribe_id = #{record.cfgSubscribeId,jdbcType=BIGINT},
+      `type` = #{record.type,jdbcType=SMALLINT},
+      cfg_datasource_id = #{record.cfgDatasourceId,jdbcType=BIGINT},
+      db_object_name = #{record.dbObjectName,jdbcType=VARCHAR},
+      data_filter_expression = #{record.dataFilterExpression,jdbcType=VARCHAR},
+      cfg_topic_id = #{record.cfgTopicId,jdbcType=BIGINT},
+      partition_strategy = #{record.partitionStrategy,jdbcType=TINYINT},
+      partition_key = #{record.partitionKey,jdbcType=VARCHAR},
+      log_begin_position = #{record.logBeginPosition,jdbcType=BIGINT},
+      log_begin_timestamp = #{record.logBeginTimestamp,jdbcType=TIMESTAMP},
+      log_end_position = #{record.logEndPosition,jdbcType=BIGINT},
+      log_end_timestamp = #{record.logEndTimestamp,jdbcType=TIMESTAMP},
+      log_current_position = #{record.logCurrentPosition,jdbcType=BIGINT},
+      cfg_subscribe_name = #{record.cfgSubscribeName,jdbcType=VARCHAR},
+      `status` = #{record.status,jdbcType=TINYINT},
+      creator_id = #{record.creatorId,jdbcType=BIGINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      modifier_id = #{record.modifierId,jdbcType=BIGINT},
+      modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
+      log_begin_file = #{record.logBeginFile,jdbcType=VARCHAR},
+      log_end_file = #{record.logEndFile,jdbcType=VARCHAR},
+      cfg_broker_id = #{record.cfgBrokerId,jdbcType=BIGINT},
+      db_object_operate_type = #{record.dbObjectOperateType,jdbcType=TINYINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hframework.hamster.cfg.domain.model.CfgSubscribe" >
+    update `cfg_subscribe`
+    <set >
+      <if test="type != null" >
+        `type` = #{type,jdbcType=SMALLINT},
+      </if>
+      <if test="cfgDatasourceId != null" >
+        cfg_datasource_id = #{cfgDatasourceId,jdbcType=BIGINT},
+      </if>
+      <if test="dbObjectName != null" >
+        db_object_name = #{dbObjectName,jdbcType=VARCHAR},
+      </if>
+      <if test="dataFilterExpression != null" >
+        data_filter_expression = #{dataFilterExpression,jdbcType=VARCHAR},
+      </if>
+      <if test="cfgTopicId != null" >
+        cfg_topic_id = #{cfgTopicId,jdbcType=BIGINT},
+      </if>
+      <if test="partitionStrategy != null" >
+        partition_strategy = #{partitionStrategy,jdbcType=TINYINT},
+      </if>
+      <if test="partitionKey != null" >
+        partition_key = #{partitionKey,jdbcType=VARCHAR},
+      </if>
+      <if test="logBeginPosition != null" >
+        log_begin_position = #{logBeginPosition,jdbcType=BIGINT},
+      </if>
+      <if test="logBeginTimestamp != null" >
+        log_begin_timestamp = #{logBeginTimestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logEndPosition != null" >
+        log_end_position = #{logEndPosition,jdbcType=BIGINT},
+      </if>
+      <if test="logEndTimestamp != null" >
+        log_end_timestamp = #{logEndTimestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logCurrentPosition != null" >
+        log_current_position = #{logCurrentPosition,jdbcType=BIGINT},
+      </if>
+      <if test="cfgSubscribeName != null" >
+        cfg_subscribe_name = #{cfgSubscribeName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        `status` = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="creatorId != null" >
+        creator_id = #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifierId != null" >
+        modifier_id = #{modifierId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logBeginFile != null" >
+        log_begin_file = #{logBeginFile,jdbcType=VARCHAR},
+      </if>
+      <if test="logEndFile != null" >
+        log_end_file = #{logEndFile,jdbcType=VARCHAR},
+      </if>
+      <if test="cfgBrokerId != null" >
+        cfg_broker_id = #{cfgBrokerId,jdbcType=BIGINT},
+      </if>
+      <if test="dbObjectOperateType != null" >
+        db_object_operate_type = #{dbObjectOperateType,jdbcType=TINYINT},
+      </if>
+    </set>
+    where cfg_subscribe_id = #{cfgSubscribeId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hframework.hamster.cfg.domain.model.CfgSubscribe" >
+    update `cfg_subscribe`
+    set `type` = #{type,jdbcType=SMALLINT},
+      cfg_datasource_id = #{cfgDatasourceId,jdbcType=BIGINT},
+      db_object_name = #{dbObjectName,jdbcType=VARCHAR},
+      data_filter_expression = #{dataFilterExpression,jdbcType=VARCHAR},
+      cfg_topic_id = #{cfgTopicId,jdbcType=BIGINT},
+      partition_strategy = #{partitionStrategy,jdbcType=TINYINT},
+      partition_key = #{partitionKey,jdbcType=VARCHAR},
+      log_begin_position = #{logBeginPosition,jdbcType=BIGINT},
+      log_begin_timestamp = #{logBeginTimestamp,jdbcType=TIMESTAMP},
+      log_end_position = #{logEndPosition,jdbcType=BIGINT},
+      log_end_timestamp = #{logEndTimestamp,jdbcType=TIMESTAMP},
+      log_current_position = #{logCurrentPosition,jdbcType=BIGINT},
+      cfg_subscribe_name = #{cfgSubscribeName,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=TINYINT},
+      creator_id = #{creatorId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modifier_id = #{modifierId,jdbcType=BIGINT},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      log_begin_file = #{logBeginFile,jdbcType=VARCHAR},
+      log_end_file = #{logEndFile,jdbcType=VARCHAR},
+      cfg_broker_id = #{cfgBrokerId,jdbcType=BIGINT},
+      db_object_operate_type = #{dbObjectOperateType,jdbcType=TINYINT}
+    where cfg_subscribe_id = #{cfgSubscribeId,jdbcType=BIGINT}
+  </update>
+</mapper>

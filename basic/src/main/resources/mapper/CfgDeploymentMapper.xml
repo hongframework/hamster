@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hframework.hamster.cfg.dao.CfgDeploymentMapper" >
+  <resultMap id="BaseResultMap" type="com.hframework.hamster.cfg.domain.model.CfgDeployment" >
+    <constructor >
+      <idArg column="id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="code" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="type" jdbcType="TINYINT" javaType="java.lang.Byte" />
+      <arg column="datasource_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="log_begin_position" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="log_end_position" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="log_begin_timestamp" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="log_end_timestamp" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="labels" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="second_labels" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="status" jdbcType="TINYINT" javaType="java.lang.Byte" />
+      <arg column="creator_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="modifier_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="modify_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="deploy_json" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="alarm_strategy" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, code, `name`, `type`, datasource_id, log_begin_position, log_end_position, log_begin_timestamp, 
+    log_end_timestamp, labels, second_labels, `status`, creator_id, create_time, modifier_id, 
+    modify_time, deploy_json, alarm_strategy
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hframework.hamster.cfg.domain.model.CfgDeployment_Example" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from `cfg_deployment`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitEnd != null and limitEnd != 0" >
+      limit #{limitStart} , #{limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from `cfg_deployment`
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from `cfg_deployment`
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hframework.hamster.cfg.domain.model.CfgDeployment_Example" >
+    delete from `cfg_deployment`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hframework.hamster.cfg.domain.model.CfgDeployment" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `cfg_deployment` (code, `name`, `type`, 
+      datasource_id, log_begin_position, log_end_position, 
+      log_begin_timestamp, log_end_timestamp, 
+      labels, second_labels, `status`, 
+      creator_id, create_time, modifier_id, 
+      modify_time, deploy_json, alarm_strategy
+      )
+    values (#{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{type,jdbcType=TINYINT}, 
+      #{datasourceId,jdbcType=BIGINT}, #{logBeginPosition,jdbcType=VARCHAR}, #{logEndPosition,jdbcType=VARCHAR}, 
+      #{logBeginTimestamp,jdbcType=TIMESTAMP}, #{logEndTimestamp,jdbcType=TIMESTAMP}, 
+      #{labels,jdbcType=VARCHAR}, #{secondLabels,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, 
+      #{creatorId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{modifierId,jdbcType=BIGINT}, 
+      #{modifyTime,jdbcType=TIMESTAMP}, #{deployJson,jdbcType=VARCHAR}, #{alarmStrategy,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hframework.hamster.cfg.domain.model.CfgDeployment" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `cfg_deployment`
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="name != null" >
+        `name`,
+      </if>
+      <if test="type != null" >
+        `type`,
+      </if>
+      <if test="datasourceId != null" >
+        datasource_id,
+      </if>
+      <if test="logBeginPosition != null" >
+        log_begin_position,
+      </if>
+      <if test="logEndPosition != null" >
+        log_end_position,
+      </if>
+      <if test="logBeginTimestamp != null" >
+        log_begin_timestamp,
+      </if>
+      <if test="logEndTimestamp != null" >
+        log_end_timestamp,
+      </if>
+      <if test="labels != null" >
+        labels,
+      </if>
+      <if test="secondLabels != null" >
+        second_labels,
+      </if>
+      <if test="status != null" >
+        `status`,
+      </if>
+      <if test="creatorId != null" >
+        creator_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="modifierId != null" >
+        modifier_id,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+      <if test="deployJson != null" >
+        deploy_json,
+      </if>
+      <if test="alarmStrategy != null" >
+        alarm_strategy,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="datasourceId != null" >
+        #{datasourceId,jdbcType=BIGINT},
+      </if>
+      <if test="logBeginPosition != null" >
+        #{logBeginPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="logEndPosition != null" >
+        #{logEndPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="logBeginTimestamp != null" >
+        #{logBeginTimestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logEndTimestamp != null" >
+        #{logEndTimestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="labels != null" >
+        #{labels,jdbcType=VARCHAR},
+      </if>
+      <if test="secondLabels != null" >
+        #{secondLabels,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="creatorId != null" >
+        #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifierId != null" >
+        #{modifierId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deployJson != null" >
+        #{deployJson,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmStrategy != null" >
+        #{alarmStrategy,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hframework.hamster.cfg.domain.model.CfgDeployment_Example" resultType="java.lang.Integer" >
+    select count(*) from `cfg_deployment`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update `cfg_deployment`
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.code != null" >
+        code = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        `name` = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null" >
+        `type` = #{record.type,jdbcType=TINYINT},
+      </if>
+      <if test="record.datasourceId != null" >
+        datasource_id = #{record.datasourceId,jdbcType=BIGINT},
+      </if>
+      <if test="record.logBeginPosition != null" >
+        log_begin_position = #{record.logBeginPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="record.logEndPosition != null" >
+        log_end_position = #{record.logEndPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="record.logBeginTimestamp != null" >
+        log_begin_timestamp = #{record.logBeginTimestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.logEndTimestamp != null" >
+        log_end_timestamp = #{record.logEndTimestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.labels != null" >
+        labels = #{record.labels,jdbcType=VARCHAR},
+      </if>
+      <if test="record.secondLabels != null" >
+        second_labels = #{record.secondLabels,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        `status` = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.creatorId != null" >
+        creator_id = #{record.creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifierId != null" >
+        modifier_id = #{record.modifierId,jdbcType=BIGINT},
+      </if>
+      <if test="record.modifyTime != null" >
+        modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.deployJson != null" >
+        deploy_json = #{record.deployJson,jdbcType=VARCHAR},
+      </if>
+      <if test="record.alarmStrategy != null" >
+        alarm_strategy = #{record.alarmStrategy,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update `cfg_deployment`
+    set id = #{record.id,jdbcType=BIGINT},
+      code = #{record.code,jdbcType=VARCHAR},
+      `name` = #{record.name,jdbcType=VARCHAR},
+      `type` = #{record.type,jdbcType=TINYINT},
+      datasource_id = #{record.datasourceId,jdbcType=BIGINT},
+      log_begin_position = #{record.logBeginPosition,jdbcType=VARCHAR},
+      log_end_position = #{record.logEndPosition,jdbcType=VARCHAR},
+      log_begin_timestamp = #{record.logBeginTimestamp,jdbcType=TIMESTAMP},
+      log_end_timestamp = #{record.logEndTimestamp,jdbcType=TIMESTAMP},
+      labels = #{record.labels,jdbcType=VARCHAR},
+      second_labels = #{record.secondLabels,jdbcType=VARCHAR},
+      `status` = #{record.status,jdbcType=TINYINT},
+      creator_id = #{record.creatorId,jdbcType=BIGINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      modifier_id = #{record.modifierId,jdbcType=BIGINT},
+      modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
+      deploy_json = #{record.deployJson,jdbcType=VARCHAR},
+      alarm_strategy = #{record.alarmStrategy,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hframework.hamster.cfg.domain.model.CfgDeployment" >
+    update `cfg_deployment`
+    <set >
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        `type` = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="datasourceId != null" >
+        datasource_id = #{datasourceId,jdbcType=BIGINT},
+      </if>
+      <if test="logBeginPosition != null" >
+        log_begin_position = #{logBeginPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="logEndPosition != null" >
+        log_end_position = #{logEndPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="logBeginTimestamp != null" >
+        log_begin_timestamp = #{logBeginTimestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logEndTimestamp != null" >
+        log_end_timestamp = #{logEndTimestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="labels != null" >
+        labels = #{labels,jdbcType=VARCHAR},
+      </if>
+      <if test="secondLabels != null" >
+        second_labels = #{secondLabels,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        `status` = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="creatorId != null" >
+        creator_id = #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifierId != null" >
+        modifier_id = #{modifierId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deployJson != null" >
+        deploy_json = #{deployJson,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmStrategy != null" >
+        alarm_strategy = #{alarmStrategy,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hframework.hamster.cfg.domain.model.CfgDeployment" >
+    update `cfg_deployment`
+    set code = #{code,jdbcType=VARCHAR},
+      `name` = #{name,jdbcType=VARCHAR},
+      `type` = #{type,jdbcType=TINYINT},
+      datasource_id = #{datasourceId,jdbcType=BIGINT},
+      log_begin_position = #{logBeginPosition,jdbcType=VARCHAR},
+      log_end_position = #{logEndPosition,jdbcType=VARCHAR},
+      log_begin_timestamp = #{logBeginTimestamp,jdbcType=TIMESTAMP},
+      log_end_timestamp = #{logEndTimestamp,jdbcType=TIMESTAMP},
+      labels = #{labels,jdbcType=VARCHAR},
+      second_labels = #{secondLabels,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=TINYINT},
+      creator_id = #{creatorId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modifier_id = #{modifierId,jdbcType=BIGINT},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      deploy_json = #{deployJson,jdbcType=VARCHAR},
+      alarm_strategy = #{alarmStrategy,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

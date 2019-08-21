@@ -1,0 +1,181 @@
+{
+  "message": {
+    "batchId": 10,
+    "createTime": 1541057854075,
+    "binlogStart": "2018-10-19 20:00:17.0|1",
+    "binlogEnd": "2018-10-19 20:00:17.0|1",
+    "datas": [
+      {
+        "tableId": -1,
+        "tableName": "v_deal_load_deal",
+        "schemaName": "v_deal_load_deal",
+        "fields": [
+          {
+            "index": 0,
+            "columnType": 4,
+            "columnName": "load_id",
+            "function": null,
+            "null": true,
+            "key": false
+          },
+          {
+            "index": 1,
+            "columnType": 4,
+            "columnName": "deal_id",
+            "function": null,
+            "null": true,
+            "key": false
+          },
+          {
+            "index": 2,
+            "columnType": 4,
+            "columnName": "user_id",
+            "function": null,
+            "null": true,
+            "key": false
+          },
+          {
+            "index": 3,
+            "columnType": 8,
+            "columnName": "money",
+            "function": null,
+            "null": true,
+            "key": false
+          },
+          {
+            "index": 4,
+            "columnType": 4,
+            "columnName": "create_time",
+            "function": null,
+            "null": true,
+            "key": false
+          },
+          {
+            "index": 5,
+            "columnType": -6,
+            "columnName": "is_repay",
+            "function": null,
+            "null": true,
+            "key": false
+          },
+          {
+            "index": 6,
+            "columnType": -6,
+            "columnName": "source_type",
+            "function": null,
+            "null": true,
+            "key": false
+          },
+          {
+            "index": 7,
+            "columnType": 12,
+            "columnName": "short_alias",
+            "function": null,
+            "null": true,
+            "key": false
+          },
+          {
+            "index": 8,
+            "columnType": -1,
+            "columnName": "deal_name",
+            "function": null,
+            "null": true,
+            "key": false
+          },
+          {
+            "index": 9,
+            "columnType": 4,
+            "columnName": "repay_time",
+            "function": null,
+            "null": true,
+            "key": false
+          },
+          {
+            "index": 10,
+            "columnType": 3,
+            "columnName": "rate",
+            "function": null,
+            "null": true,
+            "key": false
+          },
+          {
+            "index": 11,
+            "columnType": 93,
+            "columnName": "firstb2b_deal_load_sync_create_time_",
+            "function": null,
+            "null": true,
+            "key": false
+          },
+          {
+            "index": 12,
+            "columnType": 93,
+            "columnName": "firstb2b_deal_load_sync_update_time_",
+            "function": null,
+            "null": true,
+            "key": false
+          },
+          {
+            "index": 13,
+            "columnType": -5,
+            "columnName": "firstb2b_deal_load_sync_id_",
+            "function": null,
+            "null": true,
+            "key": false
+          },{
+            "index": 14,
+            "columnType": 4,
+            "columnName": "id",
+            "function": null,
+            "null": false,
+            "key": true
+          }
+        ],
+        "rows": [
+          {
+            "values": [
+              "94654",
+              "9332",
+              "2066657",
+              "1000000.0",
+              "1537241377",
+              "0",
+              "4",
+              "",
+              "老专银A000009332",
+              "3",
+              "15",
+              "2018-10-26 21:39:53.0",
+              "2018-10-19 20:00:17.0",
+              "1",
+              "1"
+            ],
+            "oldValues": [],
+            "updates": [],
+            "eventType": "UPDATE",
+            "executeTime": 1539950400,
+            "binLogPosition": "2018-10-19 20:00:17.0|1"
+          }
+        ]
+      }
+    ]
+  },
+  "createTime": null,
+  "eventData": {
+    "prototypeValue": "13_test_mysql_stat/mysql.mysql_scan.20.v_deal_load_deal.1s.100",
+    "processId": 9,
+    "startTime": null,
+    "endTime": null,
+    "firstTime": null,
+    "binlogStart": "2018-10-19 20:00:17.0|1",
+    "binlogEnd": "2018-10-19 20:00:17.0|1",
+    "batchId": 10,
+    "number": null,
+    "size": null,
+    "exts": null,
+    "currNid": -999,
+    "nextNid": -999,
+    "desc": null
+  },
+  "jobs": null,
+  "empty": false
+}

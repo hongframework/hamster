@@ -1,0 +1,70 @@
+{
+  "message": {
+    "batchId": 10,
+    "createTime": 1541057854075,
+    "binlogStart": "2018-10-19 20:00:17.0|1",
+    "binlogEnd": "2018-10-19 20:00:17.0|1",
+    "datas": [
+      {
+        "tableId": -1,
+        "tableName": "v_deal_load_deal",
+        "schemaName": "v_deal_load_deal",
+        "fields": [
+          {
+            "index": 8,
+            "columnType": -1,
+            "columnName": "user_agent",
+            "function": null,
+            "null": true,
+            "key": false
+          },
+          {
+            "index": 8,
+            "columnType": -1,
+            "columnName": "ip",
+            "function": null,
+            "null": true,
+            "key": false
+          }
+        ],
+        "rows": [
+          {
+            "values": ["firstb2b/4.10.0 (iPhone; iOS 12.1.4; Scale/2.00)","116.114.19.244"],
+            "oldValues": [],
+            "updates": [],
+            "eventType": "UPDATE",
+            "executeTime": 1539950400,
+            "binLogPosition": "2018-10-19 20:00:17.0|1"
+          },
+          {
+            "values": ["Mozilla/5.0 (Linux; Android 8.0.0; BND-AL10 Build/HONORBND-AL10; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/66.0.3359.126 MQQBrowser/6.2 TBS/044506 Mobile Safari/537.36 MMWEBID/918 MicroMessenger/7.0.3.1400(0x2700033B) Process/tools NetType/WIFI Language/zh_CN","112.10.4.62"],
+            "oldValues": [],
+            "updates": [],
+            "eventType": "UPDATE",
+            "executeTime": 1539950400,
+            "binLogPosition": "2018-10-19 20:00:17.0|1"
+          }
+        ]
+      }
+    ]
+  },
+  "createTime": null,
+  "eventData": {
+    "prototypeValue": "13_test_mysql_stat/mysql.mysql_scan.20.v_deal_load_deal.1s.100",
+    "processId": 9,
+    "startTime": null,
+    "endTime": null,
+    "firstTime": null,
+    "binlogStart": "2018-10-19 20:00:17.0|1",
+    "binlogEnd": "2018-10-19 20:00:17.0|1",
+    "batchId": 10,
+    "number": null,
+    "size": null,
+    "exts": null,
+    "currNid": -999,
+    "nextNid": -999,
+    "desc": null
+  },
+  "jobs": null,
+  "empty": false
+}

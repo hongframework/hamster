@@ -1,0 +1,35 @@
+<component>
+	<fileSets>
+		<fileSet>
+			<directory>./bin</directory>
+			<outputDirectory>bin</outputDirectory>
+			<includes>
+				<include>**/*</include>
+			</includes>
+			<fileMode>0755</fileMode>
+		</fileSet>
+		<fileSet>
+			<directory>./target/classes</directory>
+			<outputDirectory>/conf</outputDirectory>
+			<excludes>
+				<exclude>com/**</exclude>
+			</excludes>
+		</fileSet>
+		<fileSet>
+			<directory>../extension/target/classes</directory>
+			<outputDirectory>conf</outputDirectory>
+			<excludes>
+				<exclude>/com/**</exclude>
+				<exclude>/webapp/**</exclude>
+				<exclude>/hframework/**</exclude>
+			</excludes>
+		</fileSet>
+	</fileSets>
+	<files>
+	</files>
+	<dependencySets>
+		<dependencySet>
+			<outputDirectory>lib</outputDirectory>
+		</dependencySet>
+	</dependencySets>
+</component>

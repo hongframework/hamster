@@ -1,0 +1,15 @@
+<module code="sch">
+  <page id="log_deploy_mgr" name="发布日志管理" page-template="qlist" data-set="sch/log_deploy">
+    <component id="qForm" data-set="sch/log_deploy_DS4Q"/>
+  </page>
+  <page id="log_deploy_create" name="发布日志创建" page-template="create" data-set="sch/log_deploy" rel-page="log_deploy_mgr"/>
+  <page id="log_deploy_edit" name="发布日志修改" page-template="edit" data-set="sch/log_deploy" rel-page="log_deploy_mgr"/>
+  <page id="log_deploy_detail" name="发布日志明细" page-template="edit" data-set="sch/log_deploy" rel-page="log_deploy_mgr"/>
+  <page id="job_exe_meta_mgr" name="任务调度元数据管理" page-template="qlist" data-set="sch/job_exe_meta">
+    <component id="qForm" data-set="sch/job_exe_meta_DS4Q"/>
+    <component id="qList" data-set="sch/job_exe_meta" event-extend="false"/>
+  </page>
+  <page id="job_exe_meta_create" name="任务调度元数据创建" page-template="create" data-set="sch/job_exe_meta" rel-page="job_exe_meta_mgr"/>
+  <page id="job_exe_meta_edit" name="任务调度元数据修改" page-template="edit" data-set="sch/job_exe_meta" rel-page="job_exe_meta_mgr"/>
+  <page id="job_exe_meta_detail" name="任务调度元数据明细" page-template="edit" data-set="sch/job_exe_meta" rel-page="job_exe_meta_mgr"/>
+</module>

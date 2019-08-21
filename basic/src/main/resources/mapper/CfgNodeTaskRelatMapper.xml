@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hframework.hamster.cfg.dao.CfgNodeTaskRelatMapper" >
+  <resultMap id="BaseResultMap" type="com.hframework.hamster.cfg.domain.model.CfgNodeTaskRelat" >
+    <constructor >
+      <idArg column="cfg_node_task_relat_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="cfg_node_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="cfg_task_inst_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="is_main_node" jdbcType="TINYINT" javaType="java.lang.Byte" />
+      <arg column="status" jdbcType="TINYINT" javaType="java.lang.Byte" />
+      <arg column="creator_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="modifier_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="modify_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    cfg_node_task_relat_id, cfg_node_id, cfg_task_inst_id, is_main_node, `status`, creator_id, 
+    create_time, modifier_id, modify_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hframework.hamster.cfg.domain.model.CfgNodeTaskRelat_Example" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from `cfg_node_task_relat`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitEnd != null and limitEnd != 0" >
+      limit #{limitStart} , #{limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from `cfg_node_task_relat`
+    where cfg_node_task_relat_id = #{cfgNodeTaskRelatId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from `cfg_node_task_relat`
+    where cfg_node_task_relat_id = #{cfgNodeTaskRelatId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hframework.hamster.cfg.domain.model.CfgNodeTaskRelat_Example" >
+    delete from `cfg_node_task_relat`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hframework.hamster.cfg.domain.model.CfgNodeTaskRelat" >
+    <selectKey resultType="java.lang.Long" keyProperty="cfgNodeTaskRelatId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `cfg_node_task_relat` (cfg_node_id, cfg_task_inst_id, is_main_node, 
+      `status`, creator_id, create_time, 
+      modifier_id, modify_time)
+    values (#{cfgNodeId,jdbcType=BIGINT}, #{cfgTaskInstId,jdbcType=BIGINT}, #{isMainNode,jdbcType=TINYINT}, 
+      #{status,jdbcType=TINYINT}, #{creatorId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifierId,jdbcType=BIGINT}, #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hframework.hamster.cfg.domain.model.CfgNodeTaskRelat" >
+    <selectKey resultType="java.lang.Long" keyProperty="cfgNodeTaskRelatId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `cfg_node_task_relat`
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cfgNodeId != null" >
+        cfg_node_id,
+      </if>
+      <if test="cfgTaskInstId != null" >
+        cfg_task_inst_id,
+      </if>
+      <if test="isMainNode != null" >
+        is_main_node,
+      </if>
+      <if test="status != null" >
+        `status`,
+      </if>
+      <if test="creatorId != null" >
+        creator_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="modifierId != null" >
+        modifier_id,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cfgNodeId != null" >
+        #{cfgNodeId,jdbcType=BIGINT},
+      </if>
+      <if test="cfgTaskInstId != null" >
+        #{cfgTaskInstId,jdbcType=BIGINT},
+      </if>
+      <if test="isMainNode != null" >
+        #{isMainNode,jdbcType=TINYINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="creatorId != null" >
+        #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifierId != null" >
+        #{modifierId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hframework.hamster.cfg.domain.model.CfgNodeTaskRelat_Example" resultType="java.lang.Integer" >
+    select count(*) from `cfg_node_task_relat`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update `cfg_node_task_relat`
+    <set >
+      <if test="record.cfgNodeTaskRelatId != null" >
+        cfg_node_task_relat_id = #{record.cfgNodeTaskRelatId,jdbcType=BIGINT},
+      </if>
+      <if test="record.cfgNodeId != null" >
+        cfg_node_id = #{record.cfgNodeId,jdbcType=BIGINT},
+      </if>
+      <if test="record.cfgTaskInstId != null" >
+        cfg_task_inst_id = #{record.cfgTaskInstId,jdbcType=BIGINT},
+      </if>
+      <if test="record.isMainNode != null" >
+        is_main_node = #{record.isMainNode,jdbcType=TINYINT},
+      </if>
+      <if test="record.status != null" >
+        `status` = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.creatorId != null" >
+        creator_id = #{record.creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifierId != null" >
+        modifier_id = #{record.modifierId,jdbcType=BIGINT},
+      </if>
+      <if test="record.modifyTime != null" >
+        modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update `cfg_node_task_relat`
+    set cfg_node_task_relat_id = #{record.cfgNodeTaskRelatId,jdbcType=BIGINT},
+      cfg_node_id = #{record.cfgNodeId,jdbcType=BIGINT},
+      cfg_task_inst_id = #{record.cfgTaskInstId,jdbcType=BIGINT},
+      is_main_node = #{record.isMainNode,jdbcType=TINYINT},
+      `status` = #{record.status,jdbcType=TINYINT},
+      creator_id = #{record.creatorId,jdbcType=BIGINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      modifier_id = #{record.modifierId,jdbcType=BIGINT},
+      modify_time = #{record.modifyTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hframework.hamster.cfg.domain.model.CfgNodeTaskRelat" >
+    update `cfg_node_task_relat`
+    <set >
+      <if test="cfgNodeId != null" >
+        cfg_node_id = #{cfgNodeId,jdbcType=BIGINT},
+      </if>
+      <if test="cfgTaskInstId != null" >
+        cfg_task_inst_id = #{cfgTaskInstId,jdbcType=BIGINT},
+      </if>
+      <if test="isMainNode != null" >
+        is_main_node = #{isMainNode,jdbcType=TINYINT},
+      </if>
+      <if test="status != null" >
+        `status` = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="creatorId != null" >
+        creator_id = #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifierId != null" >
+        modifier_id = #{modifierId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where cfg_node_task_relat_id = #{cfgNodeTaskRelatId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hframework.hamster.cfg.domain.model.CfgNodeTaskRelat" >
+    update `cfg_node_task_relat`
+    set cfg_node_id = #{cfgNodeId,jdbcType=BIGINT},
+      cfg_task_inst_id = #{cfgTaskInstId,jdbcType=BIGINT},
+      is_main_node = #{isMainNode,jdbcType=TINYINT},
+      `status` = #{status,jdbcType=TINYINT},
+      creator_id = #{creatorId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modifier_id = #{modifierId,jdbcType=BIGINT},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where cfg_node_task_relat_id = #{cfgNodeTaskRelatId,jdbcType=BIGINT}
+  </update>
+</mapper>

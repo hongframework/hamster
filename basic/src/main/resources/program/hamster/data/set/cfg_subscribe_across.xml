@@ -1,0 +1,18 @@
+<dataset>
+  <module>cfg</module>
+  <code>cfg_subscribe_across</code>
+  <entity>cfg_subscribe</entity>
+  <name>订阅【默认】</name>
+  <fields>
+    <field code="cfg_subscribe_id" name="订阅id" edit-type="input" is-key="true">
+      <update-edit-type>text</update-edit-type>
+    </field>
+    <field code="cfg_subscribe_name" name="订阅名称" edit-type="text" not-null="true"/>
+    <field code="log_begin_file" name="日志起始文件" edit-type="input" show-type="hidden"/>
+    <field code="log_begin_position" name="日志起始位置" edit-type="input" show-type="hidden"/>
+    <field code="log_begin_timestamp" name="日志起始时间" edit-type="datetime"  show-type="hidden"/>
+    <field code="status" name="状态" edit-type="hidden"  not-null="true">
+      <enum-class code="cfg_subscribe.status" />
+    </field>
+  </fields>
+</dataset>

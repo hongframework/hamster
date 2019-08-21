@@ -1,0 +1,25 @@
+<dataset>
+  <module>cfg</module>
+  <code>cfg_task_node_def_DS4Q</code>
+  <entity>cfg_task_node_def</entity>
+  <name>任务子节点定义【查询】</name>
+  <fields>
+    <field code="cfg_task_node_def_id" name="任务节点定义id" edit-type="hidden" is-key="true" not-null="true"/>
+    <field code="cfg_task_node_def_name" name="任务节点定义名称" edit-type="input" not-null="true"/>
+    <field code="cfg_task_node_def_code" name="任务节点定义编码" edit-type="input" not-null="true"/>
+    <field code="java_class" name="任务节点实现类" edit-type="input"/>
+    <field code="cfg_task_def_id" name="任务定义id" edit-type="hidden" not-null="true">
+      <rel entity-code="cfg_task_def/cfg_task_def_id/cfg_task_def_name"/>
+    </field>
+    <field code="creator_id" name="创建人" edit-type="hidden">
+      <rel entity-code="hfsec_user/hfsec_user_id/hfsec_user_name"/>
+    </field>
+    <field code="create_time_GEQ" name="创建开始时间" edit-type="hidden"/>
+    <field code="create_time_LEQ" name="创建结束时间" edit-type="hidden"/>
+    <field code="modifier_id" name="修改人" edit-type="hidden">
+      <rel entity-code="hfsec_user/hfsec_user_id/hfsec_user_name"/>
+    </field>
+    <field code="modify_time_GEQ" name="修改开始时间" edit-type="hidden"/>
+    <field code="modify_time_LEQ" name="修改结束时间" edit-type="hidden"/>
+  </fields>
+</dataset>

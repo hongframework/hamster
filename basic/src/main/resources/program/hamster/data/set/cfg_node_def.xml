@@ -1,0 +1,43 @@
+<dataset>
+  <module>cfg</module>
+  <code>cfg_node_def</code>
+  <entity>cfg_node_def</entity>
+  <name>动态节点定义【默认】</name>
+  <fields>
+    <field code="id" name="动态节点定义id" edit-type="hidden" is-key="true" not-null="true"/>
+    <field code="type" name="动态节点定义类型" edit-type="select" not-null="true">
+      <enum-class code="cfg_node_def.type"/>
+    </field>
+    <field code="datasource_type" name="数据源类型" edit-type="select">
+      <enum-class code="cfg_node_def.datasource_type"/>
+    </field>
+    <field code="name" name="动态节点定义名称" edit-type="input" is-name="true" not-null="true"/>
+    <field code="code" name="动态节点定义编码" edit-type="input" not-null="true"/>
+    <field code="execute_method" name="运行方式" edit-type="select" not-null="true">
+      <enum-class code="cfg_node_def.execute_method"/>
+    </field>
+    <field code="description" name="动态节点定义描述" edit-type="input"/>
+    <field code="execute_uri" name="运行类" edit-type="input" not-null="true"  show-type="hidden"/>
+    <field code="creator_id" name="创建人" edit-type="hidden">
+      <rel entity-code="hfsec_user/hfsec_user_id/hfsec_user_name" add-by-global="true"/>
+      <create-edit-type>hidden</create-edit-type>
+      <update-edit-type>text</update-edit-type>
+    </field>
+    <field code="create_time" name="创建时间" edit-type="hidden">
+      <create-edit-type>hidden</create-edit-type>
+      <update-edit-type>text</update-edit-type>
+    </field>
+    <field code="modifier_id" name="修改人" edit-type="hidden">
+      <rel entity-code="hfsec_user/hfsec_user_id/hfsec_user_name" add-by-global="true"/>
+      <create-edit-type>hidden</create-edit-type>
+      <update-edit-type>hidden</update-edit-type>
+    </field>
+    <field code="modify_time" name="修改时间" edit-type="hidden">
+      <create-edit-type>hidden</create-edit-type>
+      <update-edit-type>hidden</update-edit-type>
+    </field>
+    <field code="status" name="状态" edit-type="select">
+      <enum-class code="cfg_node_def.status"/>
+    </field>
+  </fields>
+</dataset>

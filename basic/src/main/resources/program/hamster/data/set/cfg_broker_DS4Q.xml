@@ -1,0 +1,28 @@
+<dataset>
+  <module>cfg</module>
+  <code>cfg_broker_DS4Q</code>
+  <entity>cfg_broker</entity>
+  <name>消息队列【查询】</name>
+  <fields>
+    <field code="cfg_broker_id" name="消息队列id" edit-type="hidden" is-key="true" not-null="true"/>
+    <field code="cfg_broker_name" name="消息队列名称" edit-type="input" not-null="true"/>
+    <field code="cfg_broker_code" name="消息队列编码" edit-type="input" not-null="true"/>
+    <field code="cfg_broker_type" name="消息队列类型" edit-type="select">
+      <enum-class code="cfg_broker.cfg_broker_type"/>
+    </field>
+    <field code="addr_list" name="地址列表" edit-type="input" not-null="true"/>
+    <field code="status" name="状态" edit-type="select">
+      <enum-class code="cfg_broker.status"/>
+    </field>
+    <field code="creator_id" name="创建人" edit-type="hidden">
+      <rel entity-code="hfsec_user/hfsec_user_id/hfsec_user_name"/>
+    </field>
+    <field code="create_time_GEQ" name="创建开始时间" edit-type="hidden"/>
+    <field code="create_time_LEQ" name="创建结束时间" edit-type="hidden"/>
+    <field code="modifier_id" name="修改人" edit-type="hidden">
+      <rel entity-code="hfsec_user/hfsec_user_id/hfsec_user_name"/>
+    </field>
+    <field code="modify_time_GEQ" name="修改开始时间" edit-type="hidden"/>
+    <field code="modify_time_LEQ" name="修改结束时间" edit-type="hidden"/>
+  </fields>
+</dataset>

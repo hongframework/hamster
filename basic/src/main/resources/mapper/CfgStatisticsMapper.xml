@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hframework.hamster.cfg.dao.CfgStatisticsMapper" >
+  <resultMap id="BaseResultMap" type="com.hframework.hamster.cfg.domain.model.CfgStatistics" >
+    <constructor >
+      <idArg column="cfg_statistics_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="cfg_statistics_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="cfg_datasource_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="status" jdbcType="TINYINT" javaType="java.lang.Byte" />
+      <arg column="creator_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="modifier_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="modify_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="log_begin_file" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="log_begin_position" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="log_begin_timestamp" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="log_end_file" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="log_end_position" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="log_end_timestamp" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    cfg_statistics_id, cfg_statistics_name, cfg_datasource_id, `status`, creator_id, 
+    create_time, modifier_id, modify_time, log_begin_file, log_begin_position, log_begin_timestamp, 
+    log_end_file, log_end_position, log_end_timestamp
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hframework.hamster.cfg.domain.model.CfgStatistics_Example" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from `cfg_statistics`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitEnd != null and limitEnd != 0" >
+      limit #{limitStart} , #{limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from `cfg_statistics`
+    where cfg_statistics_id = #{cfgStatisticsId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from `cfg_statistics`
+    where cfg_statistics_id = #{cfgStatisticsId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hframework.hamster.cfg.domain.model.CfgStatistics_Example" >
+    delete from `cfg_statistics`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hframework.hamster.cfg.domain.model.CfgStatistics" >
+    <selectKey resultType="java.lang.Long" keyProperty="cfgStatisticsId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `cfg_statistics` (cfg_statistics_name, cfg_datasource_id, 
+      `status`, creator_id, create_time, 
+      modifier_id, modify_time, log_begin_file, 
+      log_begin_position, log_begin_timestamp, log_end_file, 
+      log_end_position, log_end_timestamp)
+    values (#{cfgStatisticsName,jdbcType=VARCHAR}, #{cfgDatasourceId,jdbcType=BIGINT}, 
+      #{status,jdbcType=TINYINT}, #{creatorId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifierId,jdbcType=BIGINT}, #{modifyTime,jdbcType=TIMESTAMP}, #{logBeginFile,jdbcType=VARCHAR}, 
+      #{logBeginPosition,jdbcType=BIGINT}, #{logBeginTimestamp,jdbcType=TIMESTAMP}, #{logEndFile,jdbcType=VARCHAR}, 
+      #{logEndPosition,jdbcType=BIGINT}, #{logEndTimestamp,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hframework.hamster.cfg.domain.model.CfgStatistics" >
+    <selectKey resultType="java.lang.Long" keyProperty="cfgStatisticsId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `cfg_statistics`
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cfgStatisticsName != null" >
+        cfg_statistics_name,
+      </if>
+      <if test="cfgDatasourceId != null" >
+        cfg_datasource_id,
+      </if>
+      <if test="status != null" >
+        `status`,
+      </if>
+      <if test="creatorId != null" >
+        creator_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="modifierId != null" >
+        modifier_id,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+      <if test="logBeginFile != null" >
+        log_begin_file,
+      </if>
+      <if test="logBeginPosition != null" >
+        log_begin_position,
+      </if>
+      <if test="logBeginTimestamp != null" >
+        log_begin_timestamp,
+      </if>
+      <if test="logEndFile != null" >
+        log_end_file,
+      </if>
+      <if test="logEndPosition != null" >
+        log_end_position,
+      </if>
+      <if test="logEndTimestamp != null" >
+        log_end_timestamp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cfgStatisticsName != null" >
+        #{cfgStatisticsName,jdbcType=VARCHAR},
+      </if>
+      <if test="cfgDatasourceId != null" >
+        #{cfgDatasourceId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="creatorId != null" >
+        #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifierId != null" >
+        #{modifierId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logBeginFile != null" >
+        #{logBeginFile,jdbcType=VARCHAR},
+      </if>
+      <if test="logBeginPosition != null" >
+        #{logBeginPosition,jdbcType=BIGINT},
+      </if>
+      <if test="logBeginTimestamp != null" >
+        #{logBeginTimestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logEndFile != null" >
+        #{logEndFile,jdbcType=VARCHAR},
+      </if>
+      <if test="logEndPosition != null" >
+        #{logEndPosition,jdbcType=BIGINT},
+      </if>
+      <if test="logEndTimestamp != null" >
+        #{logEndTimestamp,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hframework.hamster.cfg.domain.model.CfgStatistics_Example" resultType="java.lang.Integer" >
+    select count(*) from `cfg_statistics`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update `cfg_statistics`
+    <set >
+      <if test="record.cfgStatisticsId != null" >
+        cfg_statistics_id = #{record.cfgStatisticsId,jdbcType=BIGINT},
+      </if>
+      <if test="record.cfgStatisticsName != null" >
+        cfg_statistics_name = #{record.cfgStatisticsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cfgDatasourceId != null" >
+        cfg_datasource_id = #{record.cfgDatasourceId,jdbcType=BIGINT},
+      </if>
+      <if test="record.status != null" >
+        `status` = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.creatorId != null" >
+        creator_id = #{record.creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifierId != null" >
+        modifier_id = #{record.modifierId,jdbcType=BIGINT},
+      </if>
+      <if test="record.modifyTime != null" >
+        modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.logBeginFile != null" >
+        log_begin_file = #{record.logBeginFile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.logBeginPosition != null" >
+        log_begin_position = #{record.logBeginPosition,jdbcType=BIGINT},
+      </if>
+      <if test="record.logBeginTimestamp != null" >
+        log_begin_timestamp = #{record.logBeginTimestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.logEndFile != null" >
+        log_end_file = #{record.logEndFile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.logEndPosition != null" >
+        log_end_position = #{record.logEndPosition,jdbcType=BIGINT},
+      </if>
+      <if test="record.logEndTimestamp != null" >
+        log_end_timestamp = #{record.logEndTimestamp,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update `cfg_statistics`
+    set cfg_statistics_id = #{record.cfgStatisticsId,jdbcType=BIGINT},
+      cfg_statistics_name = #{record.cfgStatisticsName,jdbcType=VARCHAR},
+      cfg_datasource_id = #{record.cfgDatasourceId,jdbcType=BIGINT},
+      `status` = #{record.status,jdbcType=TINYINT},
+      creator_id = #{record.creatorId,jdbcType=BIGINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      modifier_id = #{record.modifierId,jdbcType=BIGINT},
+      modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
+      log_begin_file = #{record.logBeginFile,jdbcType=VARCHAR},
+      log_begin_position = #{record.logBeginPosition,jdbcType=BIGINT},
+      log_begin_timestamp = #{record.logBeginTimestamp,jdbcType=TIMESTAMP},
+      log_end_file = #{record.logEndFile,jdbcType=VARCHAR},
+      log_end_position = #{record.logEndPosition,jdbcType=BIGINT},
+      log_end_timestamp = #{record.logEndTimestamp,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hframework.hamster.cfg.domain.model.CfgStatistics" >
+    update `cfg_statistics`
+    <set >
+      <if test="cfgStatisticsName != null" >
+        cfg_statistics_name = #{cfgStatisticsName,jdbcType=VARCHAR},
+      </if>
+      <if test="cfgDatasourceId != null" >
+        cfg_datasource_id = #{cfgDatasourceId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        `status` = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="creatorId != null" >
+        creator_id = #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifierId != null" >
+        modifier_id = #{modifierId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logBeginFile != null" >
+        log_begin_file = #{logBeginFile,jdbcType=VARCHAR},
+      </if>
+      <if test="logBeginPosition != null" >
+        log_begin_position = #{logBeginPosition,jdbcType=BIGINT},
+      </if>
+      <if test="logBeginTimestamp != null" >
+        log_begin_timestamp = #{logBeginTimestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logEndFile != null" >
+        log_end_file = #{logEndFile,jdbcType=VARCHAR},
+      </if>
+      <if test="logEndPosition != null" >
+        log_end_position = #{logEndPosition,jdbcType=BIGINT},
+      </if>
+      <if test="logEndTimestamp != null" >
+        log_end_timestamp = #{logEndTimestamp,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where cfg_statistics_id = #{cfgStatisticsId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hframework.hamster.cfg.domain.model.CfgStatistics" >
+    update `cfg_statistics`
+    set cfg_statistics_name = #{cfgStatisticsName,jdbcType=VARCHAR},
+      cfg_datasource_id = #{cfgDatasourceId,jdbcType=BIGINT},
+      `status` = #{status,jdbcType=TINYINT},
+      creator_id = #{creatorId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modifier_id = #{modifierId,jdbcType=BIGINT},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      log_begin_file = #{logBeginFile,jdbcType=VARCHAR},
+      log_begin_position = #{logBeginPosition,jdbcType=BIGINT},
+      log_begin_timestamp = #{logBeginTimestamp,jdbcType=TIMESTAMP},
+      log_end_file = #{logEndFile,jdbcType=VARCHAR},
+      log_end_position = #{logEndPosition,jdbcType=BIGINT},
+      log_end_timestamp = #{logEndTimestamp,jdbcType=TIMESTAMP}
+    where cfg_statistics_id = #{cfgStatisticsId,jdbcType=BIGINT}
+  </update>
+</mapper>

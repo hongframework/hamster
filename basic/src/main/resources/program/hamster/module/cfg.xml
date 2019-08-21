@@ -1,0 +1,276 @@
+<module code="cfg">
+  <page id="cfg_datasource_mgr" name="数据源管理" page-template="qlist" data-set="cfg/cfg_datasource">
+    <component id="qForm" data-set="cfg/cfg_datasource_DS4Q"/>
+    <component id="qList" data-set="cfg/cfg_datasource" event-extend="false">
+      <event rel="#BOFC.goto.create"/>
+      <event rel="#EOFR.goto.edit"/>
+      <event rel="#EOFR.confirm.on">
+        <pre-handle case="status" when="0" then="1"></pre-handle>
+      </event>
+      <event rel="#EOFR.confirm.off">
+        <pre-handle case="status" when="1" then="0"></pre-handle>
+      </event>
+      <event rel="#ELE.goto.detail"></event>
+    </component>
+  </page>
+  <page id="cfg_datasource_create" name="数据源添加" page-template="cComb" data-set="cfg/cfg_datasource" rel-page="cfg_datasource_mgr">
+    <component id="cForm" data-set="cfg/cfg_datasource"/>
+    <component id="cList" data-set="cfg/cfg_datatable"/>
+  </page>
+  <page id="cfg_datasource_edit" name="数据源修改" page-template="eComb" data-set="cfg/cfg_datasource" rel-page="cfg_datasource_mgr">
+    <component id="eForm" data-set="cfg/cfg_datasource"/>
+    <component id="eList" data-set="cfg/cfg_datatable"/>
+  </page>
+  <page id="cfg_datasource_detail" name="数据源查看" page-template="dComb" data-set="cfg/cfg_datasource" rel-page="cfg_datasource_mgr">
+    <component id="dForm" data-set="cfg/cfg_datasource"/>
+    <component id="qList" data-set="cfg/cfg_datatable"/>
+  </page>
+
+  <page id="cfg_broker_mgr" name="消息队列管理" page-template="qlist" data-set="cfg/cfg_broker">
+    <component id="qForm" data-set="cfg/cfg_broker_DS4Q"/>
+    <component id="qList" data-set="cfg/cfg_broker" event-extend="false">
+      <event rel="#BOFC.goto.create"/>
+      <event rel="#EOFR.goto.edit"/>
+      <event rel="#EOFR.confirm.on">
+        <pre-handle case="status" when="0" then="1"></pre-handle>
+      </event>
+      <event rel="#EOFR.confirm.off">
+        <pre-handle case="status" when="1" then="0"></pre-handle>
+      </event>
+      <event rel="#ELE.goto.detail"></event>
+    </component>
+  </page>
+  <page id="cfg_broker_create" name="消息队列添加" page-template="cComb" data-set="cfg/cfg_broker" rel-page="cfg_broker_mgr">
+    <component id="cForm" data-set="cfg/cfg_broker"/>
+    <component id="cList" data-set="cfg/cfg_topic"/>
+  </page>
+  <page id="cfg_broker_edit" name="消息队列修改" page-template="eComb" data-set="cfg/cfg_broker" rel-page="cfg_broker_mgr">
+    <component id="eForm" data-set="cfg/cfg_broker"/>
+    <component id="eList" data-set="cfg/cfg_topic"/>
+  </page>
+  <page id="cfg_broker_detail" name="消息队列查看" page-template="dComb" data-set="cfg/cfg_broker" rel-page="cfg_broker_mgr">
+    <component id="dForm" data-set="cfg/cfg_broker"/>
+    <component id="qList" data-set="cfg/cfg_topic"/>
+  </page>
+  <page id="cfg_topic_mgr" name="主题管理" page-template="qlist" data-set="cfg/cfg_topic">
+    <component id="qForm" data-set="cfg/cfg_topic_DS4Q"/>
+    <component id="qList" data-set="cfg/cfg_topic" event-extend="false">
+      <event rel="#BOFC.goto.create"/>
+      <event rel="#EOFR.goto.edit"/>
+      <event rel="#EOFR.confirm.on">
+        <pre-handle case="status" when="0" then="1"></pre-handle>
+      </event>
+      <event rel="#EOFR.confirm.off">
+        <pre-handle case="status" when="1" then="0"></pre-handle>
+      </event>
+      <event rel="#ELE.goto.detail"></event>
+    </component>
+  </page>
+  <page id="cfg_topic_create" name="主题创建" page-template="create" data-set="cfg/cfg_topic"/>
+  <page id="cfg_topic_edit" name="主题修改" page-template="edit" data-set="cfg/cfg_topic"/>
+  <page id="cfg_topic_detail" name="主题明细" page-template="edit" data-set="cfg/cfg_topic"/>
+  <page id="cfg_subscribe_mgr" name="订阅管理" page-template="qlist" data-set="cfg/cfg_subscribe">
+    <component id="qForm" data-set="cfg/cfg_subscribe_DS4Q"/>
+    <component id="qList" data-set="cfg/cfg_subscribe" event-extend="false">
+      <event rel="#BOFC.goto.create"/>
+      <event rel="#EOFR.goto.edit"/>
+      <event rel="#EOFR.confirm.play">
+        <pre-handle case="status" when="1" then="2"></pre-handle>
+      </event>
+      <event rel="#EOFR.confirm.play">
+        <pre-handle case="status" when="3" then="2"></pre-handle>
+      </event>
+      <event rel="#EOFR.confirm.pause">
+        <pre-handle case="status" when="2" then="3"></pre-handle>
+      </event>
+      <event rel="#EOFR.confirm.stop">
+        <pre-handle case="status" when="3" then="4"></pre-handle>
+      </event>
+      <event rel="#EOFR.confirm.stop">
+        <pre-handle case="status" when="2" then="4"></pre-handle>
+      </event>
+      <event rel="#ELE.goto.detail"></event>
+    </component>
+  </page>
+
+  <page id="cfg_subscribe_create" name="订阅创建" page-template="cComb" data-set="cfg/cfg_subscribe">
+    <component id="cForm" data-set="cfg/cfg_subscribe"/>
+    <component id="cList" data-set="cfg/cfg_subscribe_detail"/>
+  </page>
+  <page id="cfg_subscribe_edit" name="订阅修改" page-template="eComb" data-set="cfg/cfg_subscribe">
+    <component id="eForm" data-set="cfg/cfg_subscribe"/>
+    <component id="eList" data-set="cfg/cfg_subscribe_detail"/>
+  </page>
+  <page id="cfg_subscribe_across" name="订阅传送门" page-template="edit" data-set="cfg/cfg_subscribe" />
+  <page id="cfg_subscribe_detail" name="订阅明细" page-template="edit" data-set="cfg/cfg_subscribe"/>
+
+  <page id="cfg_statistics_topic_mgr" name="统计主题管理" page-template="qlist" data-set="cfg/cfg_statistics_topic">
+    <component id="qForm" data-set="cfg/cfg_statistics_topic_DS4Q"/>
+    <component id="qList" data-set="cfg/cfg_statistics_topic" event-extend="false">
+      <event rel="#BOFC.goto.create"/>
+      <event rel="#EOFR.goto.edit"/>
+      <event rel="#EOFR.confirm.on">
+        <pre-handle case="status" when="0" then="1"></pre-handle>
+      </event>
+      <event rel="#EOFR.confirm.off">
+        <pre-handle case="status" when="1" then="0"></pre-handle>
+      </event>
+      <event rel="#ELE.goto.detail"></event>
+      <event name="goto_event_page">
+        <attach anchor="EOFR">
+          <appendElement type="icon" param='{fillclass:"btn-info",iconclass:"icon-bar-chart"}'></appendElement>
+        </attach>
+        <source scope="CROW" param="chartCode={cfgStatisticsTopicCode}&amp;chartName={cfgStatisticsTopicName}"></source>
+        <effect type="openPage" action='/chart.html' isStack="true"></effect>
+      </event>
+    </component>
+  </page>
+  <page id="cfg_statistics_topic_create" name="统计主题创建" page-template="create" data-set="cfg/cfg_statistics_topic" rel-page="cfg_statistics_topic_mgr"/>
+  <page id="cfg_statistics_topic_edit" name="统计主题修改" page-template="edit" data-set="cfg/cfg_statistics_topic" rel-page="cfg_statistics_topic_mgr"/>
+  <page id="cfg_statistics_topic_detail" name="统计主题明细" page-template="edit" data-set="cfg/cfg_statistics_topic" rel-page="cfg_statistics_topic_mgr"/>
+  <page id="cfg_statistics_mgr" name="流量统计管理" page-template="qlist" data-set="cfg/cfg_statistics">
+    <component id="qForm" data-set="cfg/cfg_statistics_DS4Q"/>
+    <component id="qList" data-set="cfg/cfg_statistics" event-extend="false">
+      <event rel="#BOFC.goto.create"/>
+      <event rel="#EOFR.goto.edit"/>
+      <event rel="#EOFR.confirm.play">
+        <pre-handle case="status" when="1" then="2"></pre-handle>
+      </event>
+      <event rel="#EOFR.confirm.play">
+        <pre-handle case="status" when="3" then="2"></pre-handle>
+      </event>
+      <event rel="#EOFR.confirm.pause">
+        <pre-handle case="status" when="2" then="3"></pre-handle>
+      </event>
+      <event rel="#EOFR.confirm.stop">
+        <pre-handle case="status" when="3" then="4"></pre-handle>
+      </event>
+      <event rel="#EOFR.confirm.stop">
+        <pre-handle case="status" when="2" then="4"></pre-handle>
+      </event>
+      <event rel="#ELE.goto.detail"></event>
+    </component>
+  </page>
+  <page id="cfg_statistics_create" name="流量统计添加" page-template="cComb" data-set="cfg/cfg_statistics" rel-page="cfg_statistics_mgr">
+    <component id="cForm" data-set="cfg/cfg_statistics"/>
+    <component id="cList" data-set="cfg/cfg_statistics_detail"/>
+  </page>
+  <page id="cfg_statistics_edit" name="流量统计修改" page-template="eComb" data-set="cfg/cfg_statistics" rel-page="cfg_statistics_mgr">
+    <component id="eForm" data-set="cfg/cfg_statistics"/>
+    <component id="eList" data-set="cfg/cfg_statistics_detail"/>
+  </page>
+  <page id="cfg_statistics_detail" name="流量统计查看" page-template="dComb" data-set="cfg/cfg_statistics" rel-page="cfg_statistics_mgr">
+    <component id="dForm" data-set="cfg/cfg_statistics"/>
+    <component id="qList" data-set="cfg/cfg_statistics_detail"/>
+  </page>
+
+  <page id="cfg_node_mgr" name="节点管理" page-template="qlist" data-set="cfg/cfg_node">
+    <component id="qForm" data-set="cfg/cfg_node_DS4Q"/>
+  </page>
+  <page id="cfg_node_create" name="节点创建" page-template="create" data-set="cfg/cfg_node"/>
+  <page id="cfg_node_edit" name="节点修改" page-template="edit" data-set="cfg/cfg_node"/>
+  <page id="cfg_node_detail" name="节点明细" page-template="edit" data-set="cfg/cfg_node"/>
+  <page id="cfg_task_def_mgr" name="任务定义管理" page-template="qlist" data-set="cfg/cfg_task_def">
+    <component id="qForm" data-set="cfg/cfg_task_def_DS4Q"/>
+  </page>
+  <page id="cfg_task_def_create" name="任务定义添加" page-template="cComb" data-set="cfg/cfg_task_def">
+    <component id="cForm" data-set="cfg/cfg_task_def"/>
+    <component id="cList" data-set="cfg/cfg_task_node_def"/>
+  </page>
+  <page id="cfg_task_def_edit" name="任务定义修改" page-template="eComb" data-set="cfg/cfg_task_def">
+    <component id="eForm" data-set="cfg/cfg_task_def"/>
+    <component id="eList" data-set="cfg/cfg_task_node_def"/>
+  </page>
+  <page id="cfg_task_def_detail" name="任务定义查看" page-template="dComb" data-set="cfg/cfg_task_def">
+    <component id="dForm" data-set="cfg/cfg_task_def"/>
+    <component id="qList" data-set="cfg/cfg_task_node_def"/>
+  </page>
+  <page id="cfg_task_inst_mgr" name="任务实例管理" page-template="qlist" data-set="cfg/cfg_task_inst">
+    <component id="qForm" data-set="cfg/cfg_task_inst_DS4Q"/>
+  </page>
+  <page id="cfg_task_inst_create" name="任务实例添加" page-template="cComb" data-set="cfg/cfg_task_inst">
+    <component id="cForm" data-set="cfg/cfg_task_inst"/>
+    <component id="cList" data-set="cfg/cfg_node_task_relat"/>
+  </page>
+  <page id="cfg_task_inst_edit" name="任务实例修改" page-template="eComb" data-set="cfg/cfg_task_inst">
+    <component id="eForm" data-set="cfg/cfg_task_inst"/>
+    <component id="eList" data-set="cfg/cfg_node_task_relat"/>
+  </page>
+  <page id="cfg_task_inst_detail" name="任务实例查看" page-template="dComb" data-set="cfg/cfg_task_inst">
+    <component id="dForm" data-set="cfg/cfg_task_inst"/>
+    <component id="qList" data-set="cfg/cfg_node_task_relat"/>
+  </page>
+  <page id="cfg_node_def_mgr" name="动态节点定义管理" page-template="qlist" data-set="cfg/cfg_node_def">
+    <component id="qForm" data-set="cfg/cfg_node_def_DS4Q"/>
+  </page>
+  <page id="cfg_node_def_create" name="动态节点定义添加" page-template="cComb" data-set="cfg/cfg_node_def" rel-page="cfg_node_def_mgr">
+    <component id="cForm" data-set="cfg/cfg_node_def"/>
+    <component id="cList" data-set="cfg/cfg_node_attr_def"/>
+  </page>
+  <page id="cfg_node_def_edit" name="动态节点定义修改" page-template="eComb" data-set="cfg/cfg_node_def" rel-page="cfg_node_def_mgr">
+    <component id="eForm" data-set="cfg/cfg_node_def"/>
+    <component id="eList" data-set="cfg/cfg_node_attr_def"/>
+  </page>
+  <page id="cfg_node_def_detail" name="动态节点定义查看" page-template="dComb" data-set="cfg/cfg_node_def" rel-page="cfg_node_def_mgr">
+    <component id="dForm" data-set="cfg/cfg_node_def"/>
+    <component id="qList" data-set="cfg/cfg_node_attr_def"/>
+  </page>
+  <page id="cfg_job_template_def_mgr" name="任务模板定义管理" page-template="qlist" data-set="cfg/cfg_job_template_def">
+    <component id="qForm" data-set="cfg/cfg_job_template_def_DS4Q"/>
+  </page>
+  <page id="cfg_job_template_def_create" name="任务模板定义添加" page-template="cComb" data-set="cfg/cfg_job_template_def" rel-page="cfg_job_template_def_mgr">
+    <component id="cForm" data-set="cfg/cfg_job_template_def"/>
+    <component id="cList" data-set="cfg/cfg_job_template_node_def"/>
+  </page>
+  <page id="cfg_job_template_def_edit" name="任务模板定义修改" page-template="eComb" data-set="cfg/cfg_job_template_def" rel-page="cfg_job_template_def_mgr">
+    <component id="eForm" data-set="cfg/cfg_job_template_def"/>
+    <component id="eList" data-set="cfg/cfg_job_template_node_def"/>
+  </page>
+  <page id="cfg_job_template_def_detail" name="任务模板定义查看" page-template="dComb" data-set="cfg/cfg_job_template_def" rel-page="cfg_job_template_def_mgr">
+    <component id="dForm" data-set="cfg/cfg_job_template_def"/>
+    <component id="qList" data-set="cfg/cfg_job_template_node_def"/>
+  </page>
+  <page id="cfg_job_mgr" name="任务定义管理" page-template="qlist" data-set="cfg/cfg_job">
+    <component id="qForm" data-set="cfg/cfg_job_DS4Q"/>
+  </page>
+  <page id="cfg_job_create" name="任务定义添加" page-template="cComb" data-set="cfg/cfg_job" rel-page="cfg_job_mgr">
+    <component id="cForm" data-set="cfg/cfg_job"/>
+    <component id="cList" data-set="cfg/cfg_job_attr"/>
+  </page>
+  <page id="cfg_job_edit" name="任务定义修改" page-template="eComb" data-set="cfg/cfg_job" rel-page="cfg_job_mgr">
+    <component id="eForm" data-set="cfg/cfg_job"/>
+    <component id="eList" data-set="cfg/cfg_job_attr"/>
+  </page>
+  <page id="cfg_job_detail" name="任务定义查看" page-template="dComb" data-set="cfg/cfg_job" rel-page="cfg_job_mgr">
+    <component id="dForm" data-set="cfg/cfg_job"/>
+    <component id="qList" data-set="cfg/cfg_job_attr"/>
+  </page>
+  <page id="cfg_label_mgr" name="标签管理" page-template="qlist" data-set="cfg/cfg_label">
+    <component id="qForm" data-set="cfg/cfg_label_DS4Q"/>
+  </page>
+  <page id="cfg_label_create" name="标签创建" page-template="create" data-set="cfg/cfg_label" rel-page="cfg_label_mgr"/>
+  <page id="cfg_label_edit" name="标签修改" page-template="edit" data-set="cfg/cfg_label" rel-page="cfg_label_mgr"/>
+  <page id="cfg_label_detail" name="标签明细" page-template="edit" data-set="cfg/cfg_label" rel-page="cfg_label_mgr"/>
+  <page id="cfg_deployment_mgr" name="发布管理" page-template="qlist" data-set="cfg/cfg_deployment">
+    <component id="qForm" data-set="cfg/cfg_deployment_DS4Q"/>
+  </page>
+  <page id="cfg_deployment_create" name="发布添加" page-template="cComb" data-set="cfg/cfg_deployment" rel-page="cfg_deployment_mgr">
+    <component id="cForm" data-set="cfg/cfg_deployment"/>
+    <component id="cList" data-set="cfg/cfg_deployment_detail"/>
+  </page>
+  <page id="cfg_deployment_edit" name="发布修改" page-template="eComb" data-set="cfg/cfg_deployment" rel-page="cfg_deployment_mgr">
+    <component id="eForm" data-set="cfg/cfg_deployment"/>
+    <component id="eList" data-set="cfg/cfg_deployment_detail"/>
+  </page>
+  <page id="cfg_deployment_detail" name="发布查看" page-template="dComb" data-set="cfg/cfg_deployment" rel-page="cfg_deployment_mgr">
+    <component id="dForm" data-set="cfg/cfg_deployment"/>
+    <component id="qList" data-set="cfg/cfg_deployment_detail"/>
+  </page>
+
+  <page id="cfg_dataview_mgr" name="标签管理" page-template="qlist" data-set="cfg/cfg_dataview">
+    <component id="qForm" data-set="cfg/cfg_dataview_DS4Q"/>
+  </page>
+  <page id="cfg_dataview_create" name="标签创建" page-template="create" data-set="cfg/cfg_dataview" rel-page="cfg_dataview_mgr"/>
+  <page id="cfg_dataview_edit" name="标签修改" page-template="edit" data-set="cfg/cfg_dataview" rel-page="cfg_dataview_mgr"/>
+  <page id="cfg_dataview_detail" name="标签明细" page-template="edit" data-set="cfg/cfg_dataview" rel-page="cfg_dataview_mgr"/>
+</module>

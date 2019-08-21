@@ -1,0 +1,17 @@
+<helper>
+  <help-module>cfg</help-module>
+  <help-dataset>db_columns</help-dataset>
+  <help-datascore>
+    <![CDATA[
+      table_name = {cfg_subscribe/db_object_name}&db_id={cfg_subscribe/cfg_datasource_id}
+    ]]>
+  </help-datascore>
+  <effect-module>cfg</effect-module>
+  <effect-dataset>cfg_subscribe_data</effect-dataset>
+  <is-dynamic>true</is-dynamic>
+  <mappings>
+    <mapping help-dataset-field="Field" effect-dataset-field="cfg_subscribe_data_type" express="1" />
+    <mapping help-dataset-field="Field" effect-dataset-field="cfg_subscribe_data_code" is-compare-key="true" is-compare-name="true"/>
+    <mapping help-dataset-field="Field" effect-dataset-field="status" express="1"/>
+  </mappings>
+</helper>

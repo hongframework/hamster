@@ -1,0 +1,134 @@
+{
+  "jobMeta": {
+    "jobTemplate": {
+      "templateCode": "stat_kafka_mysql",
+      "templateName": "鏁版嵁缁熻(Kafka-Mysql)"
+    },
+    "jobInfo": {
+      "jobId": 1120,
+      "jobCode": "kafka_consumer_test",
+      "jobKey": "stat_kafka_mysql.kafka_consumer_test"
+    },
+    "jobNodes": null,
+    "extractNode": null,
+    "selectKey": "kafka.kafka_selector.1.sg_test0,sg_test1"
+  },
+  "nodeMeta": {
+    "nodeCode": "prune_trans",
+    "nodeName": "瀛楁鏄犲皠",
+    "nodeKey": "stat_kafka_mysql.kafka_consumer_test.prune_trans",
+    "nodeStage": "transform",
+    "dataSourceType": "",
+    "executeMethod": "java",
+    "executeUri": "com.hframework.datacenter.hamster.worker.tasks.transform.PruneTransformer",
+    "rows": [{
+      "targetColumn": "req_time",
+      "sourceColumn": "req_time"
+    }, {
+      "targetColumn": "ip",
+      "sourceColumn": "ip"
+    }, {
+      "targetColumn": "uuid",
+      "sourceColumn": "uuid"
+    }, {
+      "targetColumn": "busi_name",
+      "sourceColumn": "busi_name"
+    }, {
+      "targetColumn": "ext_2",
+      "sourceColumn": "ext_2"
+    }, {
+      "targetColumn": "req_server",
+      "sourceColumn": "req_server"
+    }, {
+      "targetColumn": "user_agent",
+      "sourceColumn": "user_agent"
+    }, {
+      "targetColumn": "country, province, city, county ",
+      "sourceColumn": "${IP:ip}"
+    }, {
+      "targetColumn": "deviceType, deviceBrandName, deviceName, isMobile, browser, browserVersion, os, osVersion",
+      "sourceColumn": "${UA:user_agent}"
+    }, {
+      "targetColumn": "ext_3",
+      "sourceColumn": "ext_3"
+    }, {
+      "targetColumn": "channel",
+      "sourceColumn": "channel"
+    }, {
+      "targetColumn": "target_page",
+      "sourceColumn": "target_page"
+    }, {
+      "targetColumn": "req_url",
+      "sourceColumn": "req_url"
+    }, {
+      "targetColumn": "money",
+      "sourceColumn": "money"
+    }, {
+      "targetColumn": "ext_4",
+      "sourceColumn": "ext_4"
+    }, {
+      "targetColumn": "source_page",
+      "sourceColumn": "source_page"
+    }, {
+      "targetColumn": "device_model",
+      "sourceColumn": "device_model"
+    }, {
+      "targetColumn": "req_type",
+      "sourceColumn": "req_type"
+    }, {
+      "targetColumn": "deal_id",
+      "sourceColumn": "deal_id"
+    }, {
+      "targetColumn": "busi_msg",
+      "sourceColumn": "busi_msg"
+    }, {
+      "targetColumn": "user_id",
+      "sourceColumn": "user_id"
+    }, {
+      "targetColumn": "ext_5",
+      "sourceColumn": "ext_5"
+    }, {
+      "targetColumn": "device_no",
+      "sourceColumn": "device_no"
+    }, {
+      "targetColumn": "ext_1",
+      "sourceColumn": "ext_1"
+    }, {
+      "targetColumn": "resp_time",
+      "sourceColumn": "resp_time"
+    }, {
+      "targetColumn": "busi_id",
+      "sourceColumn": "busi_id"
+    }],
+    "workerId": null
+  },
+  "prevNodeMeta": {
+    "jobTemplate": {
+      "templateCode": "stat_kafka_mysql",
+      "templateName": "鏁版嵁缁熻(Kafka-Mysql)"
+    },
+    "jobInfo": {
+      "jobId": 1120,
+      "jobCode": "kafka_consumer_test",
+      "jobKey": "stat_kafka_mysql.kafka_consumer_test"
+    },
+    "nodeMeta": {
+      "nodeCode": "kafka_selector",
+      "nodeName": "kafka閫夊彇",
+      "nodeKey": "stat_kafka_mysql.kafka_consumer_test.kafka_selector",
+      "nodeStage": "extract",
+      "dataSourceType": "kafka",
+      "executeMethod": "java",
+      "executeUri": "com.hframework.datacenter.hamster.worker.tasks.extract.MysqlScanExtractor;com.hframework.datacenter.hamster.worker.tasks.select.KafkaSelector;com.hframework.datacenter.hamster.worker.tasks.term.MysqlBinlogTerminator",
+      "rows": [{
+        "timeColumn": "req_time",
+        "sourceTopic": "sg_test0,sg_test1",
+        "messageType": "json",
+        "sourceColumns": "req_time,req_server,req_url,req_type,resp_time,ip,user_agent,device_model,device_no,channel,uuid,user_id,source_page,target_page,busi_name,busi_id,busi_msg,money,deal_id,ext_1,ext_2,ext_3,ext_4,ext_5",
+        "sourceKafka": "1",
+        "filterExpression": ""
+      }],
+      "workerId": null
+    }
+  }
+}

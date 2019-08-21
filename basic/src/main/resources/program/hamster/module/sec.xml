@@ -1,0 +1,57 @@
+<module code="sec">
+  <page id="hfsec_user_mgr" name="用户管理" page-template="qlist" data-set="sec/hfsec_user">
+    <component id="qForm" data-set="sec/hfsec_user_DS4Q"/>
+  </page>
+  <page id="hfsec_user_create" name="用户添加" page-template="cComb" data-set="sec/hfsec_user" rel-page="hfsec_user_mgr">
+    <component id="cForm" data-set="sec/hfsec_user"/>
+    <component id="cList" data-set="sec/hfsec_user_authorize"/>
+  </page>
+  <page id="hfsec_user_edit" name="用户修改" page-template="eComb" data-set="sec/hfsec_user" rel-page="hfsec_user_mgr">
+    <component id="eForm" data-set="sec/hfsec_user"/>
+    <component id="eList" data-set="sec/hfsec_user_authorize"/>
+  </page>
+  <page id="hfsec_user_detail" name="用户查看" page-template="dComb" data-set="sec/hfsec_user" rel-page="hfsec_user_mgr">
+    <component id="dForm" data-set="sec/hfsec_user"/>
+    <component id="qList" data-set="sec/hfsec_user_authorize"/>
+  </page>
+  <page id="hfsec_menu_mgr" name="菜单管理" page-template="editByCategory" data-set="sec/hfsec_menu">
+  </page>
+  <page id="hfsec_menu_create" name="菜单创建" page-template="create" data-set="sec/hfsec_menu"/>
+  <page id="hfsec_menu_edit" name="菜单修改" page-template="edit" data-set="sec/hfsec_menu"/>
+  <page id="hfsec_menu_detail" name="菜单明细" page-template="edit" data-set="sec/hfsec_menu"/>
+  <page id="hfmd_enum_class_mgr" name="字典管理" page-template="qlist" data-set="sec/hfmd_enum_class">
+    <component id="qForm" data-set="sec/hfmd_enum_class_DS4Q"/>
+  </page>
+  <page id="hfmd_enum_class_create" name="字典添加" page-template="cComb" data-set="sec/hfmd_enum_class">
+    <component id="cForm" data-set="sec/hfmd_enum_class"/>
+    <component id="cList" data-set="sec/hfmd_enum"/>
+  </page>
+  <page id="hfmd_enum_class_edit" name="字典修改" page-template="eComb" data-set="sec/hfmd_enum_class">
+    <component id="eForm" data-set="sec/hfmd_enum_class"/>
+    <component id="eList" data-set="sec/hfmd_enum"/>
+  </page>
+  <page id="hfmd_enum_class_detail" name="字典查看" page-template="dComb" data-set="sec/hfmd_enum_class">
+    <component id="dForm" data-set="sec/hfmd_enum_class"/>
+    <component id="qList" data-set="sec/hfmd_enum"/>
+  </page>
+  <page id="hfsec_organize_mgr" name="组织管理" page-template="editByCategory" data-set="sec/hfsec_organize">
+  </page>
+  <page id="hfsec_organize_create" name="组织创建" page-template="create" data-set="sec/hfsec_organize"/>
+  <page id="hfsec_organize_edit" name="组织修改" page-template="edit" data-set="sec/hfsec_organize"/>
+  <page id="hfsec_organize_detail" name="组织明细" page-template="edit" data-set="sec/hfsec_organize"/>
+  <page id="hfsec_role_mgr" name="角色管理" page-template="qlist" data-set="sec/hfsec_role">
+    <component id="qForm" data-set="sec/hfsec_role_DS4Q"/>
+  </page>
+  <page id="hfsec_role_create" name="角色添加" page-template="cComb" data-set="sec/hfsec_role" rel-page="hfsec_role_mgr">
+    <component id="cForm" data-set="sec/hfsec_role"/>
+    <component id="cList" data-set="sec/hfsec_role_authorize"/>
+  </page>
+  <page id="hfsec_role_edit" name="角色修改" page-template="eComb" data-set="sec/hfsec_role" rel-page="hfsec_role_mgr">
+    <component id="eForm" data-set="sec/hfsec_role"/>
+    <component id="eList" data-set="sec/hfsec_role_authorize"/>
+  </page>
+  <page id="hfsec_role_detail" name="角色查看" page-template="dComb" data-set="sec/hfsec_role" rel-page="hfsec_role_mgr">
+    <component id="dForm" data-set="sec/hfsec_role"/>
+    <component id="qList" data-set="sec/hfsec_role_authorize"/>
+  </page>
+</module>

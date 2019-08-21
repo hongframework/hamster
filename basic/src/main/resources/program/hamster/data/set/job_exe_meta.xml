@@ -1,0 +1,19 @@
+<dataset>
+  <module>sch</module>
+  <code>job_exe_meta</code>
+  <entity>job_exe_meta</entity>
+  <name>任务调度元数据【默认】</name>
+  <fields>
+    <field code="id" name="任务调度元数据id" edit-type="hidden" is-key="true" not-null="true"/>
+    <field code="deploy" name="发布信息" edit-type="input" not-null="true"/>
+    <field code="datastore" name="数据源" edit-type="input" not-null="true"/>
+    <field code="source_table" name="源表" edit-type="input" not-null="true"/>
+    <field code="target_table" name="目标表" edit-type="input" not-null="true"/>
+    <field code="update_time" name="更新时间" edit-type="datetime" not-null="true"/>
+    <field code="delay_time" name="任务延迟时长" edit-type="input" not-null="true"/>
+    <field code="total_delay" name="累计延迟时长" edit-type="input"/>
+    <field code="execute_time" name="累计执行时间" edit-type="datetime" not-null="true"/>
+    <field code="description" name="描述" edit-type="input"/>
+    <field code="update_node" name="更新人" edit-type="input"/>
+  </fields>
+</dataset>

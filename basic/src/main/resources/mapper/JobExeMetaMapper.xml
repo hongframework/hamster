@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hframework.hamster.sch.dao.JobExeMetaMapper" >
+  <resultMap id="BaseResultMap" type="com.hframework.hamster.sch.domain.model.JobExeMeta" >
+    <constructor >
+      <idArg column="id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="deploy" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="datastore" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="source_table" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="target_table" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="delay_time" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="total_delay" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="execute_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="description" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="update_node" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, deploy, datastore, source_table, target_table, update_time, delay_time, total_delay, 
+    execute_time, description, update_node
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hframework.hamster.sch.domain.model.JobExeMeta_Example" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from `job_exe_meta`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitEnd != null and limitEnd != 0" >
+      limit #{limitStart} , #{limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from `job_exe_meta`
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from `job_exe_meta`
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hframework.hamster.sch.domain.model.JobExeMeta_Example" >
+    delete from `job_exe_meta`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hframework.hamster.sch.domain.model.JobExeMeta" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `job_exe_meta` (deploy, datastore, source_table, 
+      target_table, update_time, delay_time, 
+      total_delay, execute_time, description, 
+      update_node)
+    values (#{deploy,jdbcType=VARCHAR}, #{datastore,jdbcType=VARCHAR}, #{sourceTable,jdbcType=VARCHAR}, 
+      #{targetTable,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{delayTime,jdbcType=BIGINT}, 
+      #{totalDelay,jdbcType=BIGINT}, #{executeTime,jdbcType=TIMESTAMP}, #{description,jdbcType=VARCHAR}, 
+      #{updateNode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hframework.hamster.sch.domain.model.JobExeMeta" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `job_exe_meta`
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="deploy != null" >
+        deploy,
+      </if>
+      <if test="datastore != null" >
+        datastore,
+      </if>
+      <if test="sourceTable != null" >
+        source_table,
+      </if>
+      <if test="targetTable != null" >
+        target_table,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="delayTime != null" >
+        delay_time,
+      </if>
+      <if test="totalDelay != null" >
+        total_delay,
+      </if>
+      <if test="executeTime != null" >
+        execute_time,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="updateNode != null" >
+        update_node,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="deploy != null" >
+        #{deploy,jdbcType=VARCHAR},
+      </if>
+      <if test="datastore != null" >
+        #{datastore,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceTable != null" >
+        #{sourceTable,jdbcType=VARCHAR},
+      </if>
+      <if test="targetTable != null" >
+        #{targetTable,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delayTime != null" >
+        #{delayTime,jdbcType=BIGINT},
+      </if>
+      <if test="totalDelay != null" >
+        #{totalDelay,jdbcType=BIGINT},
+      </if>
+      <if test="executeTime != null" >
+        #{executeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="updateNode != null" >
+        #{updateNode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hframework.hamster.sch.domain.model.JobExeMeta_Example" resultType="java.lang.Integer" >
+    select count(*) from `job_exe_meta`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update `job_exe_meta`
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.deploy != null" >
+        deploy = #{record.deploy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.datastore != null" >
+        datastore = #{record.datastore,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sourceTable != null" >
+        source_table = #{record.sourceTable,jdbcType=VARCHAR},
+      </if>
+      <if test="record.targetTable != null" >
+        target_table = #{record.targetTable,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.delayTime != null" >
+        delay_time = #{record.delayTime,jdbcType=BIGINT},
+      </if>
+      <if test="record.totalDelay != null" >
+        total_delay = #{record.totalDelay,jdbcType=BIGINT},
+      </if>
+      <if test="record.executeTime != null" >
+        execute_time = #{record.executeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateNode != null" >
+        update_node = #{record.updateNode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update `job_exe_meta`
+    set id = #{record.id,jdbcType=BIGINT},
+      deploy = #{record.deploy,jdbcType=VARCHAR},
+      datastore = #{record.datastore,jdbcType=VARCHAR},
+      source_table = #{record.sourceTable,jdbcType=VARCHAR},
+      target_table = #{record.targetTable,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      delay_time = #{record.delayTime,jdbcType=BIGINT},
+      total_delay = #{record.totalDelay,jdbcType=BIGINT},
+      execute_time = #{record.executeTime,jdbcType=TIMESTAMP},
+      description = #{record.description,jdbcType=VARCHAR},
+      update_node = #{record.updateNode,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hframework.hamster.sch.domain.model.JobExeMeta" >
+    update `job_exe_meta`
+    <set >
+      <if test="deploy != null" >
+        deploy = #{deploy,jdbcType=VARCHAR},
+      </if>
+      <if test="datastore != null" >
+        datastore = #{datastore,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceTable != null" >
+        source_table = #{sourceTable,jdbcType=VARCHAR},
+      </if>
+      <if test="targetTable != null" >
+        target_table = #{targetTable,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delayTime != null" >
+        delay_time = #{delayTime,jdbcType=BIGINT},
+      </if>
+      <if test="totalDelay != null" >
+        total_delay = #{totalDelay,jdbcType=BIGINT},
+      </if>
+      <if test="executeTime != null" >
+        execute_time = #{executeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="updateNode != null" >
+        update_node = #{updateNode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hframework.hamster.sch.domain.model.JobExeMeta" >
+    update `job_exe_meta`
+    set deploy = #{deploy,jdbcType=VARCHAR},
+      datastore = #{datastore,jdbcType=VARCHAR},
+      source_table = #{sourceTable,jdbcType=VARCHAR},
+      target_table = #{targetTable,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      delay_time = #{delayTime,jdbcType=BIGINT},
+      total_delay = #{totalDelay,jdbcType=BIGINT},
+      execute_time = #{executeTime,jdbcType=TIMESTAMP},
+      description = #{description,jdbcType=VARCHAR},
+      update_node = #{updateNode,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

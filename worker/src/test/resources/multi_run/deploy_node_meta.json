@@ -1,0 +1,12 @@
+{
+  "deployCode": "14_get_all_firstb2b_deal",
+  "jobKey": null,
+  "selectKey": "binlog.mysql_binlog.13",
+  "nodeKey": "binlog.mysql_binlog.13",
+  "deployType": "full",
+  "masterLabels": ["zqh-dev"],
+  "standbyLabels": ["zqh-dev"],
+  "operate": null,
+  "workerId": -999,
+  "deploymentInfo": null
+}

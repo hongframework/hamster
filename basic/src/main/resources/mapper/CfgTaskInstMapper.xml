@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hframework.hamster.cfg.dao.CfgTaskInstMapper" >
+  <resultMap id="BaseResultMap" type="com.hframework.hamster.cfg.domain.model.CfgTaskInst" >
+    <constructor >
+      <idArg column="cfg_task_inst_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="cfg_task_inst_desc" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="cfg_task_def_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="status" jdbcType="TINYINT" javaType="java.lang.Byte" />
+      <arg column="param_value_1" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="param_value_remark_1" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="param_value_2" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="param_value_remark_2" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="creator_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="modifier_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="modify_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    cfg_task_inst_id, cfg_task_inst_desc, cfg_task_def_id, `status`, param_value_1, param_value_remark_1, 
+    param_value_2, param_value_remark_2, creator_id, create_time, modifier_id, modify_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hframework.hamster.cfg.domain.model.CfgTaskInst_Example" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from `cfg_task_inst`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitEnd != null and limitEnd != 0" >
+      limit #{limitStart} , #{limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from `cfg_task_inst`
+    where cfg_task_inst_id = #{cfgTaskInstId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from `cfg_task_inst`
+    where cfg_task_inst_id = #{cfgTaskInstId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hframework.hamster.cfg.domain.model.CfgTaskInst_Example" >
+    delete from `cfg_task_inst`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hframework.hamster.cfg.domain.model.CfgTaskInst" >
+    <selectKey resultType="java.lang.Long" keyProperty="cfgTaskInstId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `cfg_task_inst` (cfg_task_inst_desc, cfg_task_def_id, `status`, 
+      param_value_1, param_value_remark_1, param_value_2, 
+      param_value_remark_2, creator_id, create_time, 
+      modifier_id, modify_time)
+    values (#{cfgTaskInstDesc,jdbcType=VARCHAR}, #{cfgTaskDefId,jdbcType=BIGINT}, #{status,jdbcType=TINYINT}, 
+      #{paramValue1,jdbcType=VARCHAR}, #{paramValueRemark1,jdbcType=VARCHAR}, #{paramValue2,jdbcType=VARCHAR}, 
+      #{paramValueRemark2,jdbcType=VARCHAR}, #{creatorId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifierId,jdbcType=BIGINT}, #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hframework.hamster.cfg.domain.model.CfgTaskInst" >
+    <selectKey resultType="java.lang.Long" keyProperty="cfgTaskInstId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `cfg_task_inst`
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cfgTaskInstDesc != null" >
+        cfg_task_inst_desc,
+      </if>
+      <if test="cfgTaskDefId != null" >
+        cfg_task_def_id,
+      </if>
+      <if test="status != null" >
+        `status`,
+      </if>
+      <if test="paramValue1 != null" >
+        param_value_1,
+      </if>
+      <if test="paramValueRemark1 != null" >
+        param_value_remark_1,
+      </if>
+      <if test="paramValue2 != null" >
+        param_value_2,
+      </if>
+      <if test="paramValueRemark2 != null" >
+        param_value_remark_2,
+      </if>
+      <if test="creatorId != null" >
+        creator_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="modifierId != null" >
+        modifier_id,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cfgTaskInstDesc != null" >
+        #{cfgTaskInstDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="cfgTaskDefId != null" >
+        #{cfgTaskDefId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="paramValue1 != null" >
+        #{paramValue1,jdbcType=VARCHAR},
+      </if>
+      <if test="paramValueRemark1 != null" >
+        #{paramValueRemark1,jdbcType=VARCHAR},
+      </if>
+      <if test="paramValue2 != null" >
+        #{paramValue2,jdbcType=VARCHAR},
+      </if>
+      <if test="paramValueRemark2 != null" >
+        #{paramValueRemark2,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorId != null" >
+        #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifierId != null" >
+        #{modifierId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hframework.hamster.cfg.domain.model.CfgTaskInst_Example" resultType="java.lang.Integer" >
+    select count(*) from `cfg_task_inst`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update `cfg_task_inst`
+    <set >
+      <if test="record.cfgTaskInstId != null" >
+        cfg_task_inst_id = #{record.cfgTaskInstId,jdbcType=BIGINT},
+      </if>
+      <if test="record.cfgTaskInstDesc != null" >
+        cfg_task_inst_desc = #{record.cfgTaskInstDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cfgTaskDefId != null" >
+        cfg_task_def_id = #{record.cfgTaskDefId,jdbcType=BIGINT},
+      </if>
+      <if test="record.status != null" >
+        `status` = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.paramValue1 != null" >
+        param_value_1 = #{record.paramValue1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paramValueRemark1 != null" >
+        param_value_remark_1 = #{record.paramValueRemark1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paramValue2 != null" >
+        param_value_2 = #{record.paramValue2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paramValueRemark2 != null" >
+        param_value_remark_2 = #{record.paramValueRemark2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creatorId != null" >
+        creator_id = #{record.creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifierId != null" >
+        modifier_id = #{record.modifierId,jdbcType=BIGINT},
+      </if>
+      <if test="record.modifyTime != null" >
+        modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update `cfg_task_inst`
+    set cfg_task_inst_id = #{record.cfgTaskInstId,jdbcType=BIGINT},
+      cfg_task_inst_desc = #{record.cfgTaskInstDesc,jdbcType=VARCHAR},
+      cfg_task_def_id = #{record.cfgTaskDefId,jdbcType=BIGINT},
+      `status` = #{record.status,jdbcType=TINYINT},
+      param_value_1 = #{record.paramValue1,jdbcType=VARCHAR},
+      param_value_remark_1 = #{record.paramValueRemark1,jdbcType=VARCHAR},
+      param_value_2 = #{record.paramValue2,jdbcType=VARCHAR},
+      param_value_remark_2 = #{record.paramValueRemark2,jdbcType=VARCHAR},
+      creator_id = #{record.creatorId,jdbcType=BIGINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      modifier_id = #{record.modifierId,jdbcType=BIGINT},
+      modify_time = #{record.modifyTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hframework.hamster.cfg.domain.model.CfgTaskInst" >
+    update `cfg_task_inst`
+    <set >
+      <if test="cfgTaskInstDesc != null" >
+        cfg_task_inst_desc = #{cfgTaskInstDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="cfgTaskDefId != null" >
+        cfg_task_def_id = #{cfgTaskDefId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        `status` = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="paramValue1 != null" >
+        param_value_1 = #{paramValue1,jdbcType=VARCHAR},
+      </if>
+      <if test="paramValueRemark1 != null" >
+        param_value_remark_1 = #{paramValueRemark1,jdbcType=VARCHAR},
+      </if>
+      <if test="paramValue2 != null" >
+        param_value_2 = #{paramValue2,jdbcType=VARCHAR},
+      </if>
+      <if test="paramValueRemark2 != null" >
+        param_value_remark_2 = #{paramValueRemark2,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorId != null" >
+        creator_id = #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifierId != null" >
+        modifier_id = #{modifierId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where cfg_task_inst_id = #{cfgTaskInstId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hframework.hamster.cfg.domain.model.CfgTaskInst" >
+    update `cfg_task_inst`
+    set cfg_task_inst_desc = #{cfgTaskInstDesc,jdbcType=VARCHAR},
+      cfg_task_def_id = #{cfgTaskDefId,jdbcType=BIGINT},
+      `status` = #{status,jdbcType=TINYINT},
+      param_value_1 = #{paramValue1,jdbcType=VARCHAR},
+      param_value_remark_1 = #{paramValueRemark1,jdbcType=VARCHAR},
+      param_value_2 = #{paramValue2,jdbcType=VARCHAR},
+      param_value_remark_2 = #{paramValueRemark2,jdbcType=VARCHAR},
+      creator_id = #{creatorId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modifier_id = #{modifierId,jdbcType=BIGINT},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where cfg_task_inst_id = #{cfgTaskInstId,jdbcType=BIGINT}
+  </update>
+</mapper>

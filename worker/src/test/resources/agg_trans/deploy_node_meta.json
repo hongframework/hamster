@@ -1,0 +1,11 @@
+{
+  "deployCode": "13_test_mysql_stat",
+  "jobKey": "stat_mysql_mysql.v_deal_load_deal_stat",
+  "selectKey": "mysql.mysql_scan.20.v_deal_load_deal.1s.100",
+  "nodeKey": "stat_mysql_mysql.v_deal_load_deal_stat.agg_trans",
+  "masterLabels": ["zqh-dev"],
+  "standbyLabels": ["master-test"],
+  "operate": "modify",
+  "workerId": "-999",
+  "deploymentInfo": null
+}

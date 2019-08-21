@@ -1,0 +1,37 @@
+{
+  "jobMeta":{
+    "jobTemplate":{
+      "templateCode":"stat_kafka_mysql",
+      "templateName":"鏁版嵁缁熻(Kafka-Mysql)"
+    },
+    "jobInfo":{
+      "jobId":1120,
+      "jobCode":"kafka_consumer_test",
+      "jobKey":"stat_kafka_mysql.kafka_consumer_test"
+    },
+    "jobNodes":null,
+    "extractNode":null,
+    "selectKey":"kafka.kafka_selector.2.test0,test1"
+  },
+  "nodeMeta":{
+    "nodeCode":"kafka_selector",
+    "nodeName":"kafka閫夊彇",
+    "nodeKey":"stat_kafka_mysql.kafka_consumer_test.kafka_selector",
+    "nodeStage":"extract",
+    "dataSourceType":"kafka",
+    "executeMethod":"java",
+    "executeUri":"com.hframework.datacenter.hamster.worker.tasks.select.KafkaSelector",
+    "rows":[
+      {
+        "sourceTopic":"test3",
+        "messageType":"json",
+        "timeColumn":"time",
+        "sourceColumns":"name,career",
+        "sourceKafka":"1", // 测试集群
+        "filterExpression":"career=='student'"
+      }
+    ],
+    "workerId":null
+  },
+  "prevNodeMeta":null
+}

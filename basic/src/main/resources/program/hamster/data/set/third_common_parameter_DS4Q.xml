@@ -1,0 +1,22 @@
+<dataset>
+  <module>cfg</module>
+  <code>third_common_parameter_DS4Q</code>
+  <entity>third_common_parameter</entity>
+  <name>第三方通用参数【查询】</name>
+  <fields>
+    <field code="id" name="参数id" edit-type="hidden" is-key="true" not-null="true"/>
+    <field code="name_LKE" name="参数名称" edit-type="input" is-name="true" not-null="true"/>
+    <field code="path_LKE" name="参数路径" edit-type="input" not-null="true"/>
+    <field code="type" name="参数类型" edit-type="input"/>
+    <field code="required" name="是否必填" edit-type="input"/>
+    <field code="value_LKE" name="参数取值" edit-type="input"/>
+    <field code="creator_id" name="创建人" edit-type="hidden">
+      <rel entity-code="hfsec_user/hfsec_user_id/hfsec_user_name" add-by-global="true"/>
+    </field>
+    <field code="create_time" name="创建时间" edit-type="hidden"/>
+    <field code="modifier_id" name="修改人" edit-type="hidden">
+      <rel entity-code="hfsec_user/hfsec_user_id/hfsec_user_name" add-by-global="true"/>
+    </field>
+    <field code="modify_time" name="修改时间" edit-type="hidden"/>
+  </fields>
+</dataset>

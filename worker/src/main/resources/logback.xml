@@ -1,0 +1,271 @@
+<configuration scan="true" scanPeriod=" 5 seconds">
+
+    <jmxConfigurator />
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{56} - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <appender name="TASK-ROOT" class="ch.qos.logback.classic.sift.SiftingAppender">
+        <discriminator>
+            <Key>task</Key>
+            <DefaultValue>task</DefaultValue>
+        </discriminator>
+        <sift>
+            <appender name="FILE-${task}"
+                      class="ch.qos.logback.core.rolling.RollingFileAppender">
+                <File>../logs/${task}/task.log</File>
+                <rollingPolicy
+                        class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                    <!-- rollover daily -->
+                    <fileNamePattern>../logs/${task}/%d{yyyy-MM-dd}/task-%d{yyyy-MM-dd}-%i.log.gz</fileNamePattern>
+                    <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                        <!-- or whenever the file size reaches 100MB -->
+                        <maxFileSize>512MB</maxFileSize>
+                    </timeBasedFileNamingAndTriggeringPolicy>
+                    <maxHistory>7</maxHistory>
+                </rollingPolicy>
+                <encoder>
+                    <pattern>
+                        %d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{56} - %msg%n
+                    </pattern>
+                </encoder>
+            </appender>
+        </sift>
+    </appender>
+    <appender name="SELECT-ROOT" class="ch.qos.logback.classic.sift.SiftingAppender">
+        <discriminator>
+            <Key>select</Key>
+            <DefaultValue>select</DefaultValue>
+        </discriminator>
+        <sift>
+            <appender name="FILE-${select}"
+                      class="ch.qos.logback.core.rolling.RollingFileAppender">
+                <File>../logs/${select}/select.log</File>
+                <rollingPolicy
+                        class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                    <!-- rollover daily -->
+                    <fileNamePattern>../logs/${select}/%d{yyyy-MM-dd}/select-%d{yyyy-MM-dd}-%i.log.gz</fileNamePattern>
+                    <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                        <!-- or whenever the file size reaches 100MB -->
+                        <maxFileSize>256MB</maxFileSize>
+                    </timeBasedFileNamingAndTriggeringPolicy>
+                    <maxHistory>7</maxHistory>
+                </rollingPolicy>
+                <encoder>
+                    <pattern>
+                        %d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{56} - %msg%n
+                    </pattern>
+                </encoder>
+            </appender>
+        </sift>
+    </appender>
+
+    <!--<appender name="DB_LOG" class="ch.qos.logback.classic.sift.SiftingAppender">-->
+        <!--<discriminator>-->
+            <!--<Key>db</Key>-->
+            <!--<DefaultValue>db</DefaultValue>-->
+        <!--</discriminator>-->
+        <!--<sift>-->
+            <!--<appender name="DB_LOG_${db}"-->
+                      <!--class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+                <!--<File>../logs/${db}/db.log</File>-->
+                <!--<rollingPolicy-->
+                        <!--class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
+                    <!--&lt;!&ndash; rollover daily &ndash;&gt;-->
+                    <!--<fileNamePattern>../logs/${db}/%d{yyyy-MM-dd}/db-%d{yyyy-MM-dd}-%i.log.gz</fileNamePattern>-->
+                    <!--<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">-->
+                        <!--<maxFileSize>512MB</maxFileSize>-->
+                    <!--</timeBasedFileNamingAndTriggeringPolicy>-->
+                    <!--<maxHistory>7</maxHistory>-->
+                <!--</rollingPolicy>-->
+                <!--<encoder>-->
+                    <!--<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{56} - %msg%n</pattern>-->
+                <!--</encoder>-->
+            <!--</appender>-->
+        <!--</sift>-->
+    <!--</appender>-->
+
+    <appender name="MQ_LOG" class="ch.qos.logback.classic.sift.SiftingAppender">
+        <discriminator>
+            <Key>mq</Key>
+            <DefaultValue>mq</DefaultValue>
+        </discriminator>
+        <sift>
+            <appender name="MQ_LOG_${mq}"
+                      class="ch.qos.logback.core.rolling.RollingFileAppender">
+                <File>../logs/${mq}/mq.log</File>
+                <rollingPolicy
+                        class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                    <!-- rollover daily -->
+                    <fileNamePattern>../logs/${mq}/%d{yyyy-MM-dd}/mq-%d{yyyy-MM-dd}-%i.log.gz</fileNamePattern>
+                    <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                        <maxFileSize>256MB</maxFileSize>
+                    </timeBasedFileNamingAndTriggeringPolicy>
+                    <maxHistory>7</maxHistory>
+                </rollingPolicy>
+                <encoder>
+                    <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{56} - %msg%n</pattern>
+                </encoder>
+            </appender>
+        </sift>
+    </appender>
+
+    <appender name="FETCHER_DUMP" class="ch.qos.logback.classic.sift.SiftingAppender">
+        <discriminator>
+            <Key>fetcher</Key>
+            <DefaultValue>fetcher</DefaultValue>
+        </discriminator>
+        <sift>
+            <appender name="FETCHER_DUMP_${fetch}"
+                      class="ch.qos.logback.core.rolling.RollingFileAppender">
+                <File>../logs/${fetcher}/fetcher.log</File>
+                <rollingPolicy
+                        class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                    <!-- rollover daily -->
+                    <fileNamePattern>../logs/${fetcher}/%d{yyyy-MM-dd}/fetcher-%d{yyyy-MM-dd}-%i.log.gz</fileNamePattern>
+                    <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                        <maxFileSize>256MB</maxFileSize>
+                    </timeBasedFileNamingAndTriggeringPolicy>
+                    <maxHistory>7</maxHistory>
+                </rollingPolicy>
+                <encoder>
+                    <pattern>%msg%n
+                    </pattern>
+                </encoder>
+            </appender>
+        </sift>
+    </appender>
+
+    <appender name="LOADER_DUMP" class="ch.qos.logback.classic.sift.SiftingAppender">
+        <discriminator>
+            <Key>loader</Key>
+            <DefaultValue>loader</DefaultValue>
+        </discriminator>
+        <sift>
+            <appender name="LOADER_DUMP_${loader}"
+                      class="ch.qos.logback.core.rolling.RollingFileAppender">
+                <File>../logs/${loader}/loader.log</File>
+                <rollingPolicy
+                        class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                    <!-- rollover daily -->
+                    <fileNamePattern>../logs/${loader}/%d{yyyy-MM-dd}/loader-%d{yyyy-MM-dd}-%i.log.gz</fileNamePattern>
+                    <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                        <maxFileSize>512MB</maxFileSize>
+                    </timeBasedFileNamingAndTriggeringPolicy>
+                    <maxHistory>7</maxHistory>
+                </rollingPolicy>
+                <encoder>
+                    <pattern>%msg%n
+                    </pattern>
+                </encoder>
+            </appender>
+        </sift>
+    </appender>
+
+    <!--<appender name="FILE_WAIT" class="ch.qos.logback.classic.sift.SiftingAppender">-->
+    <!--<discriminator>-->
+    <!--<Key>hamster</Key>-->
+    <!--<DefaultValue>hamster</DefaultValue>-->
+    <!--</discriminator>-->
+    <!--<sift>-->
+    <!--<appender name="FILE_WAIT_LOG_${hamster}"-->
+    <!--class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+    <!--<File>../logs/${hamster}/wait.log</File>-->
+    <!--<rollingPolicy-->
+    <!--class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
+    <!--&lt;!&ndash; rollover daily &ndash;&gt;-->
+    <!--<fileNamePattern>../logs/${hamster}/%d{yyyy-MM-dd}/wait-%d{yyyy-MM-dd}-%i.log.gz</fileNamePattern>-->
+    <!--<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">-->
+    <!--<maxFileSize>512MB</maxFileSize>-->
+    <!--</timeBasedFileNamingAndTriggeringPolicy>-->
+    <!--<maxHistory>7</maxHistory>-->
+    <!--</rollingPolicy>-->
+    <!--<encoder>-->
+    <!--<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %msg%n</pattern>-->
+    <!--</encoder>-->
+    <!--</appender>-->
+    <!--</sift>-->
+    <!--</appender>-->
+
+    <!--<logger name="com.hframe.ext.service" additivity="false">-->
+        <!--<level value="INFO" />-->
+        <!--<appender-ref ref="DB_LOG" />-->
+    <!--</logger>-->
+    <logger name="com.hframework.common.client.kafka.KafkaService" additivity="false">
+        <level value="INFO" />
+        <appender-ref ref="MQ_LOG" />
+    </logger>
+    <logger name="com.hframe.hamster.node.logHandlers.LoadDumpHandler" additivity="false">
+        <level value="INFO" />
+        <appender-ref ref="LOADER_DUMP" />
+    </logger>
+    <logger name="com.hframe.hamster.node.logHandlers.FetcherDumpHandler" additivity="false">
+        <level value="INFO" />
+        <appender-ref ref="FETCHER_DUMP" />
+    </logger>
+    <logger name="com.hframe.hamster.node.logHandlers.SelectDumpHandler" additivity="false">
+        <level value="INFO" />
+        <appender-ref ref="SELECT-ROOT" />
+    </logger>
+    <logger name="com.hframe.hamster.node.cannal.CanalServer" additivity="false">
+        <level value="INFO" />
+        <appender-ref ref="TASK-ROOT" />
+    </logger>
+    <logger name="com.hframework.datacenter.hamster.worker.tasks" additivity="false">
+        <level value="INFO" />
+        <appender-ref ref="TASK-ROOT" />
+    </logger>
+    <logger name="com.hframework.datacenter.hamster.worker.HamsterWorker" additivity="false">
+        <level value="INFO" />
+        <appender-ref ref="TASK-ROOT" />
+    </logger>
+    <logger name="com.hframework.datacenter.hamster.worker.HamsterWorker$" additivity="false">
+        <level value="INFO" />
+        <appender-ref ref="TASK-ROOT" />
+    </logger>
+    <logger name="com.hframework.datacenter.hamster.monitor.zk" additivity="false">
+        <level value="DEBUG" />
+        <appender-ref ref="TASK-ROOT" />
+    </logger>
+
+
+
+    <logger name="org.apache.zookeeper.ClientCnxn" additivity="false">
+        <level value="WARN" />
+        <appender-ref ref="TASK_ROOT" />
+    </logger>
+
+    <logger name="org.apache.zookeeper.ZooKeeper" additivity="false">
+        <level value="WARN" />
+        <appender-ref ref="TASK_ROOT" />
+    </logger>
+
+    <!--<logger name="com.alibaba.dubbo.rpc.support.RpcUtils" additivity="false">-->
+    <!--<level value="error" />-->
+    <!--<appender-ref ref="TASK-ROOT" />-->
+    <!--</logger>-->
+    <!--
+    <logger name="com.alibaba.otter.shared.common.utils.thread.ExecutorTemplate" additivity="false">
+        <level value="INFO" />
+        <appender-ref ref="FILE_WAIT" />
+    </logger>
+    <logger name="com.alibaba.otter.canal.server.embeded.CanalServerWithEmbeded" additivity="false">
+        <level value="INFO" />
+        <appender-ref ref="TASK-ROOT" />
+    </logger>
+    <logger name="com.alibaba.otter.node.etl.select.SelectTask" additivity="false">
+        <level value="INFO" />
+        <appender-ref ref="TASK-ROOT" />
+    </logger>
+     -->
+
+    <root level="INFO">
+        <!--
+        <appender-ref ref="STDOUT"/>
+        -->
+        <appender-ref ref="TASK-ROOT" />
+    </root>
+</configuration>

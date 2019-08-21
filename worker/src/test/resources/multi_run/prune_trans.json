@@ -1,0 +1,55 @@
+{
+  "jobMeta": {
+    "jobTemplate": {
+      "templateCode": "sync_binlog_kafka",
+      "templateName": "鏁版嵁鍚屾(Binlog-Kafka)"
+    },
+    "jobInfo": {
+      "jobId": 1013,
+      "jobCode": "firstb2b_deal_33",
+      "jobKey": "sync_binlog_kafka.firstb2b_deal_33"
+    },
+    "jobNodes": null,
+    "extractNode": null,
+    "selectKey": "binlog.mysql_binlog.13"
+  },
+  "nodeMeta": {
+    "nodeCode": "prune_trans",
+    "nodeName": "瀛楁鏄犲皠",
+    "nodeKey": "sync_binlog_kafka.firstb2b_deal_33.prune_trans",
+    "nodeStage": "transform",
+    "dataSourceType": "",
+    "executeMethod": "java",
+    "executeUri": "com.hframework.datacenter.hamster.worker.tasks.transform.PruneTransformer",
+    "rows": [],
+    "workerId": null
+  },
+  "prevNodeMeta": {
+    "jobTemplate": {
+      "templateCode": "sync_binlog_kafka",
+      "templateName": "鏁版嵁鍚屾(Binlog-Kafka)"
+    },
+    "jobInfo": {
+      "jobId": 1013,
+      "jobCode": "firstb2b_deal_33",
+      "jobKey": "sync_binlog_kafka.firstb2b_deal_33"
+    },
+    "nodeMeta": {
+      "nodeCode": "mysql_binlog",
+      "nodeName": "MySQL Binlog 鐩戝惉",
+      "nodeKey": "sync_binlog_kafka.firstb2b_deal_33.mysql_binlog",
+      "nodeStage": "extract",
+      "dataSourceType": "binlog",
+      "executeMethod": "java",
+      "executeUri": "com.hframework.datacenter.hamster.worker.tasks.extract.MysqlBinlogExtractor;com.hframework.datacenter.hamster.worker.tasks.select.MysqlBinlogSelector;com.hframework.datacenter.hamster.worker.tasks.term.MysqlBinlogTerminator",
+      "rows": [{
+        "sourceDB": "13",
+        "sourceColumns": "id,rate,day,create_time,update_time,name_match,name_match_row,deal_cate_match,tag_match,tag_match_row,type_match,type_match_row",
+        "filterExpression": "",
+        "operType": "1",
+        "sourceTable": "firstb2b_deal"
+      }],
+      "workerId": null
+    }
+  }
+}
